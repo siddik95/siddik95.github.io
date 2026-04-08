@@ -1,208 +1,871 @@
-<!DOCTYPE HTML>
-<!--
-	Prologue by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Prologue by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Siddiqur Rahman — Geospatial Data Scientist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #07090f;
+      --bg2: #0d1120;
+      --bg3: #121828;
+      --border: rgba(100,180,220,0.13);
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --accent3: #34d399;
+      --text: #e2e8f0;
+      --muted: #7c8fa8;
+      --card: rgba(15,22,40,0.85);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-		<!-- Header -->
-			<div id="header">
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
 
-				<div class="top">
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none; opacity: 0.4;
+    }
 
-					<!-- Logo -->
-						<div id="logo">
-							<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
-							<h1 id="title">Siddiqur Rahman</h1>
-							<p>Geospatial Data Scientist </p>
-						</div>
+    /* ── NAVIGATION ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 3rem;
+      background: rgba(7,9,15,0.75);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
+    }
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.01em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
 
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
-								<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a></li>
-								<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
-								<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a></li>
-							</ul>
-						</nav>
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 9rem 3rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent3);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.4rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s forwards;
+    }
+    h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent);
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s forwards;
+    }
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.65s forwards;
+    }
+    .btn {
+      padding: 0.75rem 1.8rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.22s;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #07090f;
+      border: 1px solid var(--accent);
+    }
+    .btn-primary:hover { background: transparent; color: var(--accent); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-				</div>
+    .hero-photo-wrap {
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+    .hero-photo-wrap img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      filter: grayscale(20%);
+      transition: filter 0.4s;
+      display: block;
+    }
+    .hero-photo-wrap img:hover { filter: grayscale(0%); }
 
-				<div class="bottom">
+    /* floating orbs */
+    .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(90px); pointer-events: none; z-index: -1;
+    }
+    .orb1 { width: 500px; height: 500px; background: rgba(56,189,248,0.07); top: -100px; right: -80px; }
+    .orb2 { width: 400px; height: 400px; background: rgba(129,140,248,0.06); bottom: -80px; left: -60px; }
 
-					<!-- Social Icons -->
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-							<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-						</ul>
+    /* ── SECTION SHARED ── */
+    section { position: relative; padding: 6rem 3rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent3);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 3rem;
+      line-height: 1.1;
+    }
+    h2 span { color: var(--accent); }
 
-				</div>
+    /* ── ABOUT ── */
+    #about { background: var(--bg2); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      font-size: 0.97rem;
+    }
+    .about-text p strong { color: var(--text); font-weight: 500; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .stat-box {
+      background: var(--card);
+      padding: 1.8rem;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .stat-box:hover { background: var(--bg3); }
+    .stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-label { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; }
 
-			</div>
+    /* ── PORTFOLIO ── */
+    #portfolio { background: var(--bg); }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(56,189,248,0.35);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .project-img {
+      width: 100%; aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+      transition: filter 0.3s;
+    }
+    .project-card:hover .project-img { filter: brightness(1); }
+    .project-body { padding: 1.4rem; }
+    .project-body h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .project-body p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+    .project-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .tag-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid rgba(56,189,248,0.3);
+      padding: 0.25rem 0.7rem;
+      border-radius: 3px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .tag-link:hover { background: var(--accent); color: #07090f; }
+    .tag-link.gh { color: var(--accent2); border-color: rgba(129,140,248,0.3); }
+    .tag-link.gh:hover { background: var(--accent2); color: #fff; }
 
-		<!-- Main -->
-			<div id="main">
+    /* ── PUBLICATIONS ── */
+    #publications { background: var(--bg2); }
+    .pub-list { display: flex; flex-direction: column; gap: 1px; }
+    .pub-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.6rem 2rem;
+      margin-bottom: 0.8rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      padding-left: 3.5rem;
+    }
+    .pub-item:hover { border-color: rgba(56,189,248,0.3); transform: translateX(4px); }
+    .pub-year {
+      position: absolute; left: 1.4rem; top: 1.6rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      letter-spacing: 0.1em;
+    }
+    .pub-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      line-height: 1.4;
+    }
+    .pub-authors { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .pub-venue {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent3);
+      letter-spacing: 0.05em;
+    }
+    .pub-doi {
+      margin-top: 0.6rem;
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent2);
+      text-decoration: none;
+    }
+    .pub-doi:hover { text-decoration: underline; }
 
-				<!-- Intro -->
-					<section id="top" class="one dark cover">
-						<div class="container">
+    /* ── CV / SKILLS ── */
+    #cv { background: var(--bg); }
+    .cv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .cv-block h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .timeline { display: flex; flex-direction: column; gap: 1.2rem; }
+    .tl-item {
+      border-left: 2px solid var(--border);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -5px; top: 6px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .tl-title { font-weight: 500; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .tl-org { font-size: 0.82rem; color: var(--accent3); margin-bottom: 0.2rem; }
+    .tl-date { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); }
 
-							<header>
-								<h2 class="alt">Hi! I'm <strong>Prologue</strong>, a <a href="http://html5up.net/license">free</a> responsive<br />
-								site template designed by <a href="http://html5up.net">HTML5 UP</a>.</h2>
-								<p>Ligula scelerisque justo sem accumsan diam quis<br />
-								vitae natoque dictum sollicitudin elementum.</p>
-							</header>
+    .skills-wrap { display: flex; flex-direction: column; gap: 1rem; }
+    .skill-cat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.6rem; }
+    .skill-tag {
+      background: rgba(56,189,248,0.08);
+      border: 1px solid rgba(56,189,248,0.18);
+      color: var(--accent);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 3px;
+      transition: background 0.2s;
+    }
+    .skill-tag:hover { background: rgba(56,189,248,0.18); }
+    .skill-tag.purple {
+      background: rgba(129,140,248,0.08);
+      border-color: rgba(129,140,248,0.2);
+      color: var(--accent2);
+    }
+    .skill-tag.green {
+      background: rgba(52,211,153,0.08);
+      border-color: rgba(52,211,153,0.2);
+      color: var(--accent3);
+    }
 
-							<footer>
-								<a href="#portfolio" class="button scrolly">Magna Aliquam</a>
-							</footer>
+    /* ── CONTACT ── */
+    #contact { background: var(--bg2); }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; font-size: 0.97rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.9rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.8rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--card);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+    .contact-link .icon { font-size: 1rem; min-width: 22px; text-align: center; }
+    .contact-emails { display: flex; flex-direction: column; gap: 0.8rem; }
+    .email-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.4rem;
+    }
+    .email-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--accent3); letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+    .email-addr { font-size: 0.85rem; color: var(--text); }
 
-						</div>
-					</section>
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      border-top: 1px solid var(--border);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      background: var(--bg);
+    }
+    footer span { color: var(--accent); }
 
-				<!-- Portfolio -->
-					<section id="portfolio" class="two">
-						<div class="container">
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
 
-							<header>
-								<h2>Portfolio</h2>
-							</header>
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(24px); }
+    }
 
-							<p>Vitae natoque dictum etiam semper magnis enim feugiat convallis convallis
-							egestas rhoncus ridiculus in quis risus amet curabitur tempor orci penatibus.
-							Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis
-							fusce hendrerit lacus ridiculus.</p>
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
 
-							<div class="row">
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-										<header>
-											<h3>Ipsum Feugiat</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-										<header>
-											<h3>Rhoncus Semper</h3>
-										</header>
-									</article>
-								</div>
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
-										<header>
-											<h3>Magna Nullam</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
-										<header>
-											<h3>Natoque Vitae</h3>
-										</header>
-									</article>
-								</div>
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
-										<header>
-											<h3>Dolor Penatibus</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
-										<header>
-											<h3>Orci Convallis</h3>
-										</header>
-									</article>
-								</div>
-							</div>
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      #hero { padding: 7rem 1.5rem 4rem; }
+      .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-photo-wrap { max-width: 240px; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid, .cv-grid, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      h1 { font-size: 2.6rem; }
+    }
+  </style>
+</head>
+<body>
 
-						</div>
-					</section>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SR</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#cv">CV</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-				<!-- About Me -->
-					<section id="about" class="three">
-						<div class="container">
+<!-- HERO -->
+<section id="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="hero-grid">
+    <div class="hero-content">
+      <p class="hero-eyebrow">// PhD Candidate · UCF · Orlando, FL</p>
+      <h1>Siddiqur<br><em>Rahman</em></h1>
+      <p class="hero-desc">
+        Geospatial Data Scientist specializing in multihazard risk assessment, grid reliability, and climate extremes. Leveraging big data and machine learning to advance environmental research and resilience.
+      </p>
+      <div class="hero-btns">
+        <a href="#portfolio" class="btn btn-primary">View Research</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <img src="assets/siddik.png" alt="Siddiqur Rahman" onerror="this.style.display='none'"/>
+    </div>
+  </div>
+</section>
 
-							<header>
-								<h2>About Me</h2>
-							</header>
+<div class="divider"></div>
 
-							<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <p class="section-label reveal">// 01 — About</p>
+    <h2 class="reveal">Who I <span>Am</span></h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          I am a <strong>PhD candidate</strong> in the Department of Civil, Environmental, and Construction Engineering at the <strong>University of Central Florida</strong>. My research sits at the intersection of climate science, geospatial data analysis, and infrastructure resilience.
+        </p>
+        <p>
+          Before UCF, I completed my <strong>Master's in Geography</strong> from the University of Alabama, where I developed expertise in spatial statistics and environmental data analysis.
+        </p>
+        <p>
+          My current work focuses on <strong>big data analysis and machine/deep learning</strong> to model power outages in Florida caused by compound extreme weather events — with implications for vulnerable communities and grid resilience planning.
+        </p>
+      </div>
+      <div class="stats-grid reveal reveal-delay-2">
+        <div class="stat-box">
+          <div class="stat-num">13</div>
+          <div class="stat-label">Publications</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">3.84</div>
+          <div class="stat-label">PhD GPA</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">DOE</div>
+          <div class="stat-label">Funded Research</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-							<p>Tincidunt eu elit diam magnis pretium accumsan etiam id urna. Ridiculus
-							ultricies curae quis et rhoncus velit. Lobortis elementum aliquet nec vitae
-							laoreet eget cubilia quam non etiam odio tincidunt montes. Elementum sem
-							parturient nulla quam placerat viverra mauris non cum elit tempus ullamcorper
-							dolor. Libero rutrum ut lacinia donec curae mus vel quisque sociis nec
-							ornare iaculis.</p>
+<div class="divider"></div>
 
-						</div>
-					</section>
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-inner">
+    <p class="section-label reveal">// 02 — Portfolio</p>
+    <h2 class="reveal">Selected <span>Projects</span></h2>
+    <div class="portfolio-grid">
 
-				<!-- Contact -->
-					<section id="contact" class="four">
-						<div class="container">
+      <div class="project-card reveal">
+        <img class="project-img" src="portfolio/picture1.png" alt="Land Cover Classification" onerror="this.style.background='#0d1120';this.style.height='160px'"/>
+        <div class="project-body">
+          <h3>Land Cover Classification</h3>
+          <p>Google Earth Engine app for analyzing land cover types across the US using the NLCD dataset.</p>
+          <div class="project-links">
+            <a href="https://siddikbrur.users.earthengine.app/view/nlcd-land-cover-analyzer" target="_blank" class="tag-link">↗ App</a>
+            <a href="https://github.com/siddik95/NLCDLandCover" target="_blank" class="tag-link gh">GitHub</a>
+          </div>
+        </div>
+      </div>
 
-							<header>
-								<h2>Contact</h2>
-							</header>
+      <div class="project-card reveal reveal-delay-1">
+        <img class="project-img" src="portfolio/picture2.png" alt="Bangladesh Districts Quiz" onerror="this.style.background='#0d1120';this.style.height='160px'"/>
+        <div class="project-body">
+          <h3>Bangladesh Districts Quiz</h3>
+          <p>Interactive Shiny app to test geographic knowledge of Bangladesh's administrative districts.</p>
+          <div class="project-links">
+            <a href="https://siddiqur.shinyapps.io/DistrictQuizBD/" target="_blank" class="tag-link">↗ Play</a>
+            <a href="https://github.com/siddik95/BD_District_Quiz" target="_blank" class="tag-link gh">GitHub</a>
+          </div>
+        </div>
+      </div>
 
-							<p>Elementum sem parturient nulla quam placerat viverra
-							mauris non cum elit tempus ullamcorper dolor. Libero rutrum ut lacinia
-							donec curae mus. Eleifend id porttitor ac ultricies lobortis sem nunc
-							orci ridiculus faucibus a consectetur. Porttitor curae mauris urna mi dolor.</p>
+      <div class="project-card reveal reveal-delay-2">
+        <img class="project-img" src="portfolio/picture3.png" alt="Raster Data Analysis" onerror="this.style.background='#0d1120';this.style.height='160px'"/>
+        <div class="project-body">
+          <h3>Raster Data Analysis</h3>
+          <p>Python toolkit for analyzing and visualizing raster datasets in geospatial research workflows.</p>
+          <div class="project-links">
+            <a href="https://github.com/siddik95/RasterDataAnalysisPython" target="_blank" class="tag-link gh">GitHub</a>
+          </div>
+        </div>
+      </div>
 
-							<form method="post" action="#">
-								<div class="row">
-									<div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Name" /></div>
-									<div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="Email" /></div>
-									<div class="col-12">
-										<textarea name="message" placeholder="Message"></textarea>
-									</div>
-									<div class="col-12">
-										<input type="submit" value="Send Message" />
-									</div>
-								</div>
-							</form>
+      <div class="project-card reveal">
+        <img class="project-img" src="portfolio/picture4.png" alt="Sentiment Analysis" onerror="this.style.background='#0d1120';this.style.height='160px'"/>
+        <div class="project-body">
+          <h3>Sentiment Analysis with GPT API</h3>
+          <p>NLP pipeline for analyzing text sentiment using OpenAI's GPT API and custom classification logic.</p>
+          <div class="project-links">
+            <a href="https://github.com/siddik95/SentimentAnalysis" target="_blank" class="tag-link gh">GitHub</a>
+          </div>
+        </div>
+      </div>
 
-						</div>
-					</section>
+      <div class="project-card reveal reveal-delay-1">
+        <img class="project-img" src="portfolio/picture5.png" alt="Pharmaceutical Removal" onerror="this.style.background='#0d1120';this.style.height='160px'"/>
+        <div class="project-body">
+          <h3>Pharmaceutical Removal Prediction</h3>
+          <p>ML model predicting pharmaceutical compound removal from wastewater treatment systems.</p>
+          <div class="project-links">
+            <a href="https://github.com/J4RELY/IGUIDEpharmEDA" target="_blank" class="tag-link gh">GitHub</a>
+          </div>
+        </div>
+      </div>
 
-			</div>
+    </div>
+  </div>
+</section>
 
-		<!-- Footer -->
-			<div id="footer">
+<div class="divider"></div>
 
-				<!-- Copyright -->
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-inner">
+    <p class="section-label reveal">// 03 — Publications</p>
+    <h2 class="reveal">Research <span>Output</span></h2>
+    <div class="pub-list">
 
-			</div>
+      <div class="pub-item reveal">
+        <span class="pub-year">2025</span>
+        <div class="pub-title">Shedding light on inequities of power outages through data transparency</div>
+        <div class="pub-authors">Stevens, K. A., Aksha, S. K., Rahman, M. S., et al.</div>
+        <div class="pub-venue">Progress in Energy · 7(3), 033001</div>
+        <a href="https://doi.org/10.1088/2516-1083/addc30" target="_blank" class="pub-doi">↗ DOI: 10.1088/2516-1083/addc30</a>
+      </div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+      <div class="pub-item reveal">
+        <span class="pub-year">2025</span>
+        <div class="pub-title">Transdisciplinary research promoting clean and resilient energy systems for socially vulnerable communities</div>
+        <div class="pub-authors">Belligoni, S., Trader, E., Li, M., Rahman, M. S., et al.</div>
+        <div class="pub-venue">Renewable and Sustainable Energy Reviews · 199, 115434</div>
+        <a href="https://doi.org/10.1016/j.rser.2025.115434" target="_blank" class="pub-doi">↗ DOI: 10.1016/j.rser.2025.115434</a>
+      </div>
 
-	</body>
+      <div class="pub-item reveal">
+        <span class="pub-year">2025</span>
+        <div class="pub-title">Characteristics of Power Outages from Compound Weather Extremes in Florida</div>
+        <div class="pub-authors">Rahman, M. S., Wahl, T., Nagaraj, M., & Enriquez, A. R.</div>
+        <div class="pub-venue">Research Square · Preprint</div>
+        <a href="https://doi.org/10.21203/rs.3.rs-6404193/v1" target="_blank" class="pub-doi">↗ DOI: 10.21203/rs.3.rs-6404193/v1</a>
+      </div>
+
+      <div class="pub-item reveal">
+        <span class="pub-year">2024</span>
+        <div class="pub-title">Compound Weather Extremes and Power Outages in Florida</div>
+        <div class="pub-authors">Rahman, M. S., Wahl, T., Nagaraj, M., & Rodriguez Enriquez, A.</div>
+        <div class="pub-venue">AGU Fall Meeting 2024, Washington D.C. · Abstract</div>
+      </div>
+
+      <div class="pub-item reveal">
+        <span class="pub-year">2023</span>
+        <div class="pub-title">Spatial and Temporal Variability of Extreme Precipitation Events in the Southeastern United States</div>
+        <div class="pub-authors">Rahman, M. S., Senkbeil, J. C., & Keellings, D. J.</div>
+        <div class="pub-venue">Atmosphere · 14(8), 1301</div>
+        <a href="https://doi.org/10.3390/atmos14081301" target="_blank" class="pub-doi">↗ DOI: 10.3390/atmos14081301</a>
+      </div>
+
+      <div class="pub-item reveal">
+        <span class="pub-year">2023</span>
+        <div class="pub-title">Spatiotemporal variability of rainfall erosivity and its teleconnection with atmospheric circulation in monsoon-driven climate region</div>
+        <div class="pub-authors">Musabbir, M., Islam, A. R. M. T., Rahman, M. S., et al.</div>
+        <div class="pub-venue">CATENA · 222, 106762</div>
+        <a href="https://doi.org/10.1016/j.catena.2022.106762" target="_blank" class="pub-doi">↗ DOI: 10.1016/j.catena.2022.106762</a>
+      </div>
+
+      <div class="pub-item reveal">
+        <span class="pub-year">2021</span>
+        <div class="pub-title">How air quality and COVID-19 transmission change under different lockdown scenarios? A case from Dhaka city, Bangladesh</div>
+        <div class="pub-authors">Rahman, M. S., Azad, M. A. K., Hasanuzzaman, M., et al.</div>
+        <div class="pub-venue">Science of The Total Environment · 754, 143161</div>
+        <a href="https://doi.org/10.1016/j.scitotenv.2020.143161" target="_blank" class="pub-doi">↗ DOI: 10.1016/j.scitotenv.2020.143161</a>
+      </div>
+
+      <div class="pub-item reveal">
+        <span class="pub-year">2021</span>
+        <div class="pub-title">Development of novel hybrid machine learning models for monthly thunderstorm frequency prediction over Bangladesh</div>
+        <div class="pub-authors">Azad, M. A. K., Islam, A. R. M. T., Rahman, M. S., & Ayen, K.</div>
+        <div class="pub-venue">Natural Hazards · 106(3), 2633–2659</div>
+        <a href="https://doi.org/10.1007/s11069-021-04532-5" target="_blank" class="pub-doi">↗ DOI: 10.1007/s11069-021-04532-5</a>
+      </div>
+
+      <div class="pub-item reveal">
+        <span class="pub-year">2019</span>
+        <div class="pub-title">Are precipitation concentration and intensity changing in Bangladesh overtimes?</div>
+        <div class="pub-authors">Rahman, M. S., & Islam, A. R. M. T.</div>
+        <div class="pub-venue">Science of the Total Environment · 683, 127008</div>
+        <a href="https://doi.org/10.1016/j.scitotenv.2019.06.529" target="_blank" class="pub-doi">↗ DOI: 10.1016/j.scitotenv.2019.06.529</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CV -->
+<section id="cv">
+  <div class="section-inner">
+    <p class="section-label reveal">// 04 — CV</p>
+    <h2 class="reveal">Experience &amp; <span>Skills</span></h2>
+    <div class="cv-grid">
+      <div>
+        <div class="cv-block reveal">
+          <h3>Education</h3>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-title">PhD in Water Resources Engineering</div>
+              <div class="tl-org">University of Central Florida</div>
+              <div class="tl-date">Aug 2023 – Present · GPA 3.84</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-title">Master's in Geography</div>
+              <div class="tl-org">University of Alabama</div>
+              <div class="tl-date">Aug 2021 – Aug 2023 · GPA 3.88</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-title">Bachelor in Disaster Management</div>
+              <div class="tl-org">Begum Rokeya University, Bangladesh</div>
+              <div class="tl-date">Dec 2019 · GPA 3.38</div>
+            </div>
+          </div>
+        </div>
+        <br/>
+        <div class="cv-block reveal">
+          <h3>Experience</h3>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-title">Graduate Research Assistant</div>
+              <div class="tl-org">University of Central Florida · DOE-funded CARES Project</div>
+              <div class="tl-date">Aug 2023 – Present</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-title">Graduate Teaching Assistant</div>
+              <div class="tl-org">University of Alabama · Intro to GIS</div>
+              <div class="tl-date">Aug 2021 – Aug 2023</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-block reveal reveal-delay-2">
+        <h3>Technical Skills</h3>
+        <div class="skills-wrap">
+          <div>
+            <div class="skill-cat-label">Programming</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">R</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">MATLAB</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-cat-label">Data Science & ML</div>
+            <div class="skill-tags">
+              <span class="skill-tag purple">Scikit-learn</span>
+              <span class="skill-tag purple">TensorFlow</span>
+              <span class="skill-tag purple">PyTorch</span>
+              <span class="skill-tag purple">Apache Spark</span>
+              <span class="skill-tag purple">Dask</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-cat-label">Geospatial</div>
+            <div class="skill-tags">
+              <span class="skill-tag green">GeoPandas</span>
+              <span class="skill-tag green">Xarray</span>
+              <span class="skill-tag green">OSMnx</span>
+              <span class="skill-tag green">ArcGIS</span>
+              <span class="skill-tag green">Google Earth Engine</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-cat-label">Cloud & DevOps</div>
+            <div class="skill-tags">
+              <span class="skill-tag">AWS</span>
+              <span class="skill-tag">GCP</span>
+              <span class="skill-tag">Azure</span>
+              <span class="skill-tag">GitHub</span>
+              <span class="skill-tag">HPC</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-cat-label">Databases</div>
+            <div class="skill-tags">
+              <span class="skill-tag purple">PostgreSQL</span>
+              <span class="skill-tag purple">MySQL</span>
+              <span class="skill-tag purple">Oracle</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label reveal">// 05 — Contact</p>
+    <h2 class="reveal">Get in <span>Touch</span></h2>
+    <div class="contact-inner">
+      <div class="contact-text reveal">
+        <p>Interested in collaboration, have questions about my research, or want to discuss opportunities in geospatial data science and climate resilience? I'd love to hear from you.</p>
+        <div class="contact-emails">
+          <div class="email-item">
+            <div class="email-label">UCF Email</div>
+            <div class="email-addr">MohammadSiddiqur.Rahman@ucf.edu</div>
+          </div>
+          <div class="email-item">
+            <div class="email-label">UA Email</div>
+            <div class="email-addr">Mrahman39@crimson.ua.edu</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-links reveal reveal-delay-1">
+        <a href="https://github.com/siddik95/" target="_blank" class="contact-link">
+          <span class="icon">⌥</span>
+          <span>github.com/siddik95</span>
+        </a>
+        <a href="https://www.linkedin.com/in/msrahman21" target="_blank" class="contact-link">
+          <span class="icon">◈</span>
+          <span>linkedin.com/in/msrahman21</span>
+        </a>
+        <a href="https://x.com/SiddRahman01" target="_blank" class="contact-link">
+          <span class="icon">✕</span>
+          <span>x.com/SiddRahman01</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2025 <span>Siddiqur Rahman</span> · Built for GitHub Pages
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav shrink on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.padding = window.scrollY > 60 ? '0.7rem 3rem' : '1.1rem 3rem';
+  });
+</script>
+</body>
 </html>
