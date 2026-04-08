@@ -637,8 +637,13 @@
   // Scroll reveal
   const revObs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-  },{threshold:.1});
+  },{threshold:0,rootMargin:'0px 0px -60px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+  // Fallback: if any reveal elements are still hidden after 2s, show them all
+  setTimeout(()=>{
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el=>el.classList.add('visible'));
+  },2000);
 
   // Skill bars
   const barObs=new IntersectionObserver(entries=>{
