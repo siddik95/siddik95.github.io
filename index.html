@@ -170,8 +170,9 @@
     footer span{color:rgba(255,255,255,.85);}
 
     /* ANIMATIONS */
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
-    .reveal.visible{opacity:1;transform:none;}
+    .reveal{opacity:1;transform:none;}
+    .reveal.animate{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
+    .reveal.animate.visible{opacity:1;transform:none;}
     .reveal-delay-1{transition-delay:.1s;}
     .reveal-delay-2{transition-delay:.2s;}
     .reveal-delay-3{transition-delay:.3s;}
@@ -634,16 +635,19 @@
   document.getElementById('sliderNext').addEventListener('click',()=>goTo(cur+1));
   timer=setInterval(()=>goTo(cur+1),5500);
 
-  // Scroll reveal
+  // Scroll reveal - add animate class first so elements are visible by default
+  // then animate them in as they enter the viewport
   const revObs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-  },{threshold:0,rootMargin:'0px 0px -60px 0px'});
-  document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
-
-  // Fallback: if any reveal elements are still hidden after 2s, show them all
+  },{threshold:0,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>{
+    el.classList.add('animate');
+    revObs.observe(el);
+  });
+  // Hard fallback: force all visible after 1.5s no matter what
   setTimeout(()=>{
-    document.querySelectorAll('.reveal:not(.visible)').forEach(el=>el.classList.add('visible'));
-  },2000);
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
+  },1500);
 
   // Skill bars
   const barObs=new IntersectionObserver(entries=>{
