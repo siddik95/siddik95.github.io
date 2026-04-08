@@ -64,6 +64,9 @@
 
     /* ABOUT */
     #about{background:var(--white);}
+    .about-bio{margin-bottom:2.5rem;}
+    .about-bio p{color:var(--muted);line-height:1.85;margin-bottom:1rem;font-size:.97rem;}
+    .about-bio p strong{color:var(--text);font-weight:500;}
     .about-body{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;}
     .about-left{display:flex;flex-direction:column;gap:1.8rem;}
     .about-right{display:flex;flex-direction:column;gap:1.5rem;}
@@ -170,9 +173,8 @@
     footer span{color:rgba(255,255,255,.85);}
 
     /* ANIMATIONS */
-    .reveal{opacity:1;transform:none;}
-    .reveal.animate{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
-    .reveal.animate.visible{opacity:1;transform:none;}
+    .reveal{opacity:1;transform:none;transition:opacity .65s ease,transform .65s ease;}
+    .reveal.visible{opacity:1;transform:none;}
     .reveal-delay-1{transition-delay:.1s;}
     .reveal-delay-2{transition-delay:.2s;}
     .reveal-delay-3{transition-delay:.3s;}
@@ -262,20 +264,22 @@
       <div class="section-line"></div>
     </div>
 
-    <!-- Two-column layout: LEFT col | RIGHT col -->
+    <!-- Bio paragraphs full width -->
+    <div class="about-bio reveal">
+      <p>I am a <strong>PhD candidate</strong> in the Department of Civil, Environmental, and Construction Engineering at the <strong>University of Central Florida</strong>. My research lies at the intersection of climate science, geospatial data analysis, and infrastructure resilience.</p>
+      <p>Before joining UCF, I completed my <strong>Master's in Geography</strong> at the University of Alabama, where I developed expertise in spatial statistics and environmental data analysis.</p>
+      <p>My current work, part of a <strong>DOE-funded project (CARES)</strong>, applies big data analytics and deep learning to model power outages caused by compound extreme weather events in Florida — with direct implications for grid resilience and socially vulnerable communities.</p>
+      <p>Outside of research, I enjoy badminton, following tech developments, and contributing to open-source geospatial tools.</p>
+    </div>
+
+    <!-- Two-column: photo left | info cards + skills right -->
     <div class="about-body">
 
-      <!-- LEFT: photo on top, bio below -->
+      <!-- LEFT: photo -->
       <div class="about-left reveal">
         <div class="about-photo-frame">
           <img src="assets/siddik.png" alt="Siddiqur Rahman"
                onerror="this.parentElement.style.minHeight='220px';this.parentElement.style.background='#eaf1fb';this.style.display='none'"/>
-        </div>
-        <div class="about-bio">
-          <p>I am a <strong>PhD candidate</strong> in the Department of Civil, Environmental, and Construction Engineering at the <strong>University of Central Florida</strong>. My research lies at the intersection of climate science, geospatial data analysis, and infrastructure resilience.</p>
-          <p>Before joining UCF, I completed my <strong>Master's in Geography</strong> at the University of Alabama, where I developed expertise in spatial statistics and environmental data analysis.</p>
-          <p>My current work, part of a <strong>DOE-funded project (CARES)</strong>, applies big data analytics and deep learning to model power outages caused by compound extreme weather events in Florida — with direct implications for grid resilience and socially vulnerable communities.</p>
-          <p>Outside of research, I enjoy badminton, following tech developments, and contributing to open-source geospatial tools.</p>
         </div>
       </div>
 
@@ -616,41 +620,53 @@
   type();
 
   // Hero Slider
-  const wrap=document.getElementById('slidesWrap'),dotsEl=document.getElementById('sliderDots');
-  const total=wrap.children.length;
-  let cur=0,timer;
-  for(let i=0;i<total;i++){
+  const slidesWrap=document.getElementById('slidesWrap'),dotsEl=document.getElementById('sliderDots');
+  const slideTotal=slidesWrap.children.length;
+  let slideIdx=0,slideTimer;
+  for(let i=0;i<slideTotal;i++){
     const d=document.createElement('button');
     d.className='slider-dot'+(i===0?' active':'');
     d.addEventListener('click',()=>goTo(i));
     dotsEl.appendChild(d);
   }
   function goTo(n){
-    cur=(n+total)%total;
-    wrap.style.transform=`translateX(-${cur*100}%)`;
-    dotsEl.querySelectorAll('.slider-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
-    clearInterval(timer);timer=setInterval(()=>goTo(cur+1),5500);
+    slideIdx=(n+slideTotal)%slideTotal;
+    slidesWrap.style.transform=`translateX(-${slideIdx*100}%)`;
+    dotsEl.querySelectorAll('.slider-dot').forEach((d,i)=>d.classList.toggle('active',i===slideIdx));
+    clearInterval(slideTimer);slideTimer=setInterval(()=>goTo(slideIdx+1),5500);
   }
-  document.getElementById('sliderPrev').addEventListener('click',()=>goTo(cur-1));
-  document.getElementById('sliderNext').addEventListener('click',()=>goTo(cur+1));
-  timer=setInterval(()=>goTo(cur+1),5500);
+  document.getElementById('sliderPrev').addEventListener('click',()=>goTo(slideIdx-1));
+  document.getElementById('sliderNext').addEventListener('click',()=>goTo(slideIdx+1));
+  slideTimer=setInterval(()=>goTo(slideIdx+1),5500);
 
-  // Scroll reveal - add animate class first so elements are visible by default
-  // then animate them in as they enter the viewport
+  // Scroll reveal
   const revObs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
   },{threshold:0,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal').forEach(el=>{
-    el.classList.add('animate');
-    revObs.observe(el);
-  });
-  // Hard fallback: force all visible after 1.5s no matter what
-  setTimeout(()=>{
-    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
-  },1500);
+  document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+  // Hard fallback: force everything visible after 1.5s
+  setTimeout(()=>{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));},1500);
 
-  // Skill bars
+  // Skill bars — trigger immediately on load too
+  function fillBars(){
+    document.querySelectorAll('.skill-bar-fill').forEach(b=>{b.style.width=b.dataset.width+'%';});
+  }
   const barObs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.dataset.width+'%';barObs.unobserve(e.target);}});
-  },{threshold:.3});
-  document.querySelectorAll('.skill-bar-fill').forEa
+    entries.forEach(e=>{if(e.isIntersecting){fillBars();barObs.disconnect();}});
+  },{threshold:0});
+  const firstBar=document.querySelector('.skill-bar-fill');
+  if(firstBar)barObs.observe(firstBar);
+  setTimeout(fillBars,1200);
+
+  // Portfolio filter
+  document.querySelectorAll('.filter-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f=btn.dataset.filter;
+      document.querySelectorAll('.project-card').forEach(c=>{c.style.display=(f==='all'||c.dataset.cat===f)?'':'none';});
+    });
+  });
+</script>
+</body>
+</html>
