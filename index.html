@@ -64,14 +64,16 @@
 
     /* ABOUT */
     #about{background:var(--white);}
-    .about-photo-row{display:flex;justify-content:flex-end;margin-bottom:2.5rem;}
-    .about-photo-frame{width:220px;border-radius:14px;overflow:hidden;box-shadow:0 12px 40px rgba(37,99,168,.15),0 3px 12px rgba(0,0,0,.1);border:3px solid rgba(37,99,168,.1);flex-shrink:0;}
+    .about-body{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;}
+    .about-left{display:flex;flex-direction:column;gap:1.8rem;}
+    .about-right{display:flex;flex-direction:column;gap:1.5rem;}
+    .about-bio p{color:var(--muted);line-height:1.85;margin-bottom:1rem;font-size:.97rem;}
+    .about-bio p:last-child{margin-bottom:0;}
+    .about-bio p strong{color:var(--text);font-weight:500;}
+    .about-photo-frame{width:100%;border-radius:14px;overflow:hidden;box-shadow:0 12px 40px rgba(37,99,168,.15),0 3px 12px rgba(0,0,0,.1);border:3px solid rgba(37,99,168,.1);}
     .about-photo-frame img{width:100%;display:block;transition:transform .4s;}
     .about-photo-frame:hover img{transform:scale(1.04);}
-    .about-body{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
-    .about-text p{color:var(--muted);line-height:1.85;margin-bottom:1.1rem;font-size:.97rem;}
-    .about-text p strong{color:var(--text);font-weight:500;}
-    .about-info{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1.8rem;}
+    .about-info{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
     .info-item{display:flex;flex-direction:column;padding:.8rem 1rem;background:var(--bg);border-radius:8px;border:1px solid var(--border);}
     .info-label{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--light-muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.25rem;}
     .info-val{font-size:.85rem;color:var(--text);}
@@ -183,8 +185,7 @@
       .hamburger{display:block;}
       section{padding:4rem 1.5rem;}
       #hero .hero-content{padding:calc(var(--nav-h) + 1.5rem) 1.5rem 3rem;}
-      .about-body,.resume-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem;}
-      .about-photo-frame{width:160px;}
+      .about-body,.resume-grid,.contact-grid{grid-template-columns:1fr;gap:2rem;}
       .about-info{grid-template-columns:1fr 1fr;}
     }
     @media(max-width:550px){
@@ -260,29 +261,31 @@
       <div class="section-line"></div>
     </div>
 
-    <!-- Photo: top right -->
-    <div class="about-photo-row reveal">
-      <div class="about-photo-frame">
-        <img src="assets/siddik.png" alt="Siddiqur Rahman"
-             onerror="this.parentElement.style.minHeight='240px';this.parentElement.style.background='#eaf1fb';this.style.display='none'"/>
-      </div>
-    </div>
-
-    <!-- Bio + Skill bars -->
+    <!-- Two-column layout: LEFT col | RIGHT col -->
     <div class="about-body">
-      <div class="about-text reveal">
-        <p>I am a <strong>PhD candidate</strong> in the Department of Civil, Environmental, and Construction Engineering at the <strong>University of Central Florida</strong>. My research lies at the intersection of climate science, geospatial data analysis, and infrastructure resilience.</p>
-        <p>Before joining UCF, I completed my <strong>Master's in Geography</strong> at the University of Alabama, where I developed expertise in spatial statistics and environmental data analysis.</p>
-        <p>My current work, part of a <strong>DOE-funded project (CARES)</strong>, applies big data analytics and deep learning to model power outages caused by compound extreme weather events in Florida — with direct implications for grid resilience and socially vulnerable communities.</p>
-        <p>Outside of research, I enjoy badminton, following tech developments, and contributing to open-source geospatial tools.</p>
+
+      <!-- LEFT: photo on top, bio below -->
+      <div class="about-left reveal">
+        <div class="about-photo-frame">
+          <img src="assets/siddik.png" alt="Siddiqur Rahman"
+               onerror="this.parentElement.style.minHeight='220px';this.parentElement.style.background='#eaf1fb';this.style.display='none'"/>
+        </div>
+        <div class="about-bio">
+          <p>I am a <strong>PhD candidate</strong> in the Department of Civil, Environmental, and Construction Engineering at the <strong>University of Central Florida</strong>. My research lies at the intersection of climate science, geospatial data analysis, and infrastructure resilience.</p>
+          <p>Before joining UCF, I completed my <strong>Master's in Geography</strong> at the University of Alabama, where I developed expertise in spatial statistics and environmental data analysis.</p>
+          <p>My current work, part of a <strong>DOE-funded project (CARES)</strong>, applies big data analytics and deep learning to model power outages caused by compound extreme weather events in Florida — with direct implications for grid resilience and socially vulnerable communities.</p>
+          <p>Outside of research, I enjoy badminton, following tech developments, and contributing to open-source geospatial tools.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: info cards on top, core competencies below -->
+      <div class="about-right reveal reveal-delay-2">
         <div class="about-info">
           <div class="info-item"><span class="info-label">Degree</span><span class="info-val">PhD (in progress)</span></div>
           <div class="info-item"><span class="info-label">City</span><span class="info-val">Orlando, FL, USA</span></div>
           <div class="info-item"><span class="info-label">Publications</span><span class="info-val">13 publications</span></div>
           <div class="info-item"><span class="info-label">Availability</span><span class="info-val" style="color:var(--accent2)">Open to collaborate</span></div>
         </div>
-      </div>
-      <div class="reveal reveal-delay-2">
         <p class="skills-title">Core Competencies</p>
         <div class="skill-bar-wrap">
           <div class="skill-bar-top"><span class="skill-name">Geospatial Data Science</span><span class="skill-pct">95%</span></div>
@@ -309,6 +312,7 @@
           <div class="skill-bar"><div class="skill-bar-fill" data-width="78"></div></div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -563,8 +567,8 @@
         <p>I'm open to research collaborations, conference presentations, and consulting related to environmental hazards and infrastructure resilience.</p>
         <div class="contact-detail-list">
           <div class="contact-detail"><div class="contact-icon">📍</div><div><div class="contact-info-label">Location</div><div class="contact-info-val">Orlando, FL, USA</div></div></div>
-          <div class="contact-detail"><div class="contact-icon">✉</div><div><div class="contact-info-label">UCF Email</div><div class="contact-info-val"><a href="mailto:MohammadSiddiqur.Rahman@ucf.edu">MohammadSiddiqur.Rahman@ucf.edu</a></div></div></div>
-          <div class="contact-detail"><div class="contact-icon">✉</div><div><div class="contact-info-label">UA Email</div><div class="contact-info-val"><a href="mailto:Mrahman39@crimson.ua.edu">Mrahman39@crimson.ua.edu</a></div></div></div>
+          <div class="contact-detail"><div class="contact-icon">✉</div><div><div class="contact-info-label">UCF Email</div><div class="contact-info-val"><a href="/cdn-cgi/l/email-protection#e0ad8f88818d8d8184b389848489919592ceb281888d818ea0958386ce858495"><span class="__cf_email__" data-cfemail="b0fddfd8d1ddddd1d4e3d9d4d4d9c1c5c29ee2d1d8ddd1def0c5d3d69ed5d4c5">[email&#160;protected]</span></a></div></div></div>
+          <div class="contact-detail"><div class="contact-icon">✉</div><div><div class="contact-info-label">UA Email</div><div class="contact-info-val"><a href="/cdn-cgi/l/email-protection#baf7c8dbd2d7dbd48983fad9c8d3d7c9d5d494cfdb94dfdecf"><span class="__cf_email__" data-cfemail="b1fcc3d0d9dcd0df8288f1d2c3d8dcc2dedf9fc4d09fd4d5c4">[email&#160;protected]</span></a></div></div></div>
         </div>
       </div>
       <div class="reveal reveal-delay-2">
@@ -573,7 +577,7 @@
           <a href="https://github.com/siddik95/" target="_blank" class="social-card"><span class="social-card-icon">⌥</span><div><div class="social-card-label">GitHub</div><div class="social-card-handle">@siddik95</div></div></a>
           <a href="https://www.linkedin.com/in/msrahman21" target="_blank" class="social-card"><span class="social-card-icon">◈</span><div><div class="social-card-label">LinkedIn</div><div class="social-card-handle">msrahman21</div></div></a>
           <a href="https://x.com/SiddRahman01" target="_blank" class="social-card"><span class="social-card-icon">𝕏</span><div><div class="social-card-label">X / Twitter</div><div class="social-card-handle">@SiddRahman01</div></div></a>
-          <a href="mailto:MohammadSiddiqur.Rahman@ucf.edu" class="social-card"><span class="social-card-icon">✉</span><div><div class="social-card-label">Email</div><div class="social-card-handle">Send a message</div></div></a>
+          <a href="/cdn-cgi/l/email-protection#88c5e7e0e9e5e5e9ecdbe1ecece1f9fdfaa6dae9e0e5e9e6c8fdebeea6edecfd" class="social-card"><span class="social-card-icon">✉</span><div><div class="social-card-label">Email</div><div class="social-card-handle">Send a message</div></div></a>
         </div>
       </div>
     </div>
@@ -582,7 +586,7 @@
 
 <footer>© 2025 <span>Siddiqur Rahman</span> · PhD Candidate, University of Central Florida</footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Hamburger
   const hamburger=document.getElementById('hamburger'),navLinks=document.getElementById('navLinks');
   hamburger.addEventListener('click',()=>navLinks.classList.toggle('open'));
@@ -640,17 +644,4 @@
   const barObs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.dataset.width+'%';barObs.unobserve(e.target);}});
   },{threshold:.3});
-  document.querySelectorAll('.skill-bar-fill').forEach(b=>barObs.observe(b));
-
-  // Portfolio filter
-  document.querySelectorAll('.filter-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      const f=btn.dataset.filter;
-      document.querySelectorAll('.project-card').forEach(c=>{c.style.display=(f==='all'||c.dataset.cat===f)?'':'none';});
-    });
-  });
-</script>
-</body>
-</html>
+  document.querySelectorAll('.skill-bar-fill').forEa
