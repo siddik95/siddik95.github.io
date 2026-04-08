@@ -152,6 +152,27 @@
     .pub-doi{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--accent);text-decoration:none;}
     .pub-doi:hover{text-decoration:underline;}
 
+    /* CV */
+    #cv{background:var(--bg);}
+    .cv-download-bar{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.5rem 2rem;margin-bottom:3rem;box-shadow:var(--card-shadow);flex-wrap:wrap;}
+    .cv-download-info{display:flex;align-items:center;gap:1.2rem;}
+    .cv-download-icon{width:52px;height:52px;background:rgba(37,99,168,.08);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;}
+    .cv-download-title{font-family:'Lora',serif;font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.2rem;}
+    .cv-download-sub{font-size:.8rem;color:var(--muted);}
+    .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+    .cv-block{margin-bottom:2.5rem;}
+    .cv-block-title{font-family:'Lora',serif;font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:1.4rem;display:flex;align-items:center;gap:.6rem;}
+    .cv-block-title::after{content:'';flex:1;height:1px;background:var(--border);}
+    .cv-skill-cat{margin-bottom:1rem;}
+    .cv-ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+    .cv-ref-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem;}
+    .cv-ref-name{font-weight:500;font-size:.9rem;color:var(--text);margin-bottom:.2rem;}
+    .cv-ref-role{font-size:.78rem;color:var(--muted);margin-bottom:.15rem;}
+    .cv-ref-org{font-size:.78rem;color:var(--muted);margin-bottom:.4rem;}
+    .cv-ref-email{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--accent);text-decoration:none;display:block;margin-bottom:.3rem;}
+    .cv-ref-email:hover{text-decoration:underline;}
+    .cv-ref-rel{font-size:.72rem;color:var(--accent2);font-style:italic;}
+
     /* CONTACT */
     #contact{background:var(--white);}
     .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;}
@@ -190,7 +211,7 @@
       .hamburger{display:block;}
       section{padding:4rem 1.5rem;}
       #hero .hero-content{padding:calc(var(--nav-h) + 1.5rem) 1.5rem 3rem;}
-      .about-body,.resume-grid,.contact-grid{grid-template-columns:1fr;gap:2rem;}
+      .about-body,.resume-grid,.contact-grid,.cv-grid{grid-template-columns:1fr;gap:2rem;}
       .about-info{grid-template-columns:1fr 1fr;}
     }
     @media(max-width:550px){
@@ -211,6 +232,7 @@
     <li><a href="#resume">Resume</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#publications">Publications</a></li>
+    <li><a href="#cv">CV</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
@@ -602,6 +624,254 @@
       <div class="pub-card reveal"><span class="pub-year-badge">2021</span><div class="pub-content"><div class="pub-title">Development of novel hybrid machine learning models for monthly thunderstorm frequency prediction over Bangladesh</div><div class="pub-authors">Azad, M. A. K., Islam, A. R. M. T., Rahman, M. S., & Ayen, K.</div><div class="pub-venue">Natural Hazards · 106(3), 2633–2659</div><a href="https://doi.org/10.1007/s11069-021-04532-5" target="_blank" class="pub-doi">↗ doi.org/10.1007/s11069-021-04532-5</a></div></div>
       <div class="pub-card reveal"><span class="pub-year-badge">2020</span><div class="pub-content"><div class="pub-title">Spatiotemporal trends in the frequency of daily rainfall in Bangladesh during 1975–2017</div><div class="pub-authors">Islam, A. R. M. T., Rahman, M. S., Khatun, R., & Hu, Z.</div><div class="pub-venue">Theoretical and Applied Climatology · 141(3–4), 1523–1539</div><a href="https://doi.org/10.1007/s00704-020-03244-x" target="_blank" class="pub-doi">↗ doi.org/10.1007/s00704-020-03244-x</a></div></div>
       <div class="pub-card reveal"><span class="pub-year-badge">2019</span><div class="pub-content"><div class="pub-title">Are precipitation concentration and intensity changing in Bangladesh overtimes?</div><div class="pub-authors">Rahman, M. S., & Islam, A. R. M. T.</div><div class="pub-venue">Science of the Total Environment · 683, 127008</div><a href="https://doi.org/10.1016/j.scitotenv.2019.06.529" target="_blank" class="pub-doi">↗ doi.org/10.1016/j.scitotenv.2019.06.529</a></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CV -->
+<section id="cv">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Curriculum Vitae</span>
+      <h2>My CV</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <!-- Download banner -->
+    <div class="cv-download-bar reveal">
+      <div class="cv-download-info">
+        <div class="cv-download-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="12" y2="18"/><line x1="15" y1="15" x2="12" y2="18"/></svg>
+        </div>
+        <div>
+          <div class="cv-download-title">Mohammad Siddiqur Rahman — Curriculum Vitae</div>
+          <div class="cv-download-sub">PhD Candidate · Water Resources Engineering · University of Central Florida</div>
+        </div>
+      </div>
+      <a href="CV_Rahman_MS.pdf" download="CV_Rahman_MS.pdf" class="btn btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:.5rem;vertical-align:middle"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download CV
+      </a>
+    </div>
+
+    <!-- CV content grid -->
+    <div class="cv-grid">
+
+      <!-- LEFT column -->
+      <div>
+        <!-- Experience -->
+        <div class="cv-block reveal">
+          <h3 class="cv-block-title">Work & Research Experience</h3>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">Aug 2023 – Present</div>
+              <div class="tl-title">Graduate Research Assistant</div>
+              <div class="tl-org">University of Central Florida, Orlando, FL</div>
+              <ul class="tl-desc">
+                <li>DOE-funded project on power outage modeling in Florida</li>
+                <li>Weather outage modeling to predict outages based on weather extremeness</li>
+                <li>Machine learning, data analysis, and HPC workflows</li>
+              </ul>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">Aug 2021 – Aug 2023</div>
+              <div class="tl-title">Graduate Teaching Assistant</div>
+              <div class="tl-org">University of Alabama, Tuscaloosa, AL</div>
+              <ul class="tl-desc">
+                <li>TA for Intro to GIS course and lab sections</li>
+                <li>GIS, Remote Sensing, and Environmental data analysis courses</li>
+                <li>Coding, research design, and manuscript drafting</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div class="cv-block reveal">
+          <h3 class="cv-block-title">Education</h3>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">Aug 2023 – Spring 2027</div>
+              <div class="tl-title">PhD in Water Resources Engineering</div>
+              <div class="tl-org">University of Central Florida, Orlando, FL</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">Aug 2021 – Aug 2023</div>
+              <div class="tl-title">Master's in Geography</div>
+              <div class="tl-org">University of Alabama, Tuscaloosa, AL</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">Dec 2019</div>
+              <div class="tl-title">Bachelor in Disaster Management</div>
+              <div class="tl-org">Begum Rokeya University, Rangpur, Bangladesh</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Funded Projects -->
+        <div class="cv-block reveal">
+          <h3 class="cv-block-title">Funded Projects</h3>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">Jul 2025 – Present</div>
+              <div class="tl-title">Megalopolitan Coastal Transformation Hub (MACH)</div>
+              <div class="tl-org">MACH Power System Modeling Team</div>
+              <ul class="tl-desc">
+                <li>Wide area power outage modeling to project and hindcast future/past outage risk</li>
+                <li>Probabilistic framework for sensitivity of outages to extreme weather changes</li>
+              </ul>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">Aug 2023 – Jul 2025</div>
+              <div class="tl-title">Clean, Affordable & Resilient Energy Systems (CARES)</div>
+              <div class="tl-org">Department of Energy Funded</div>
+              <ul class="tl-desc">
+                <li>Weather power outage modeling based on extremeness of weather</li>
+                <li>Grid risk and reliability assessment for vulnerable communities</li>
+                <li>Compound extreme weather events and power outages in Florida</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conferences -->
+        <div class="cv-block reveal">
+          <h3 class="cv-block-title">Conferences</h3>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">Dec 2024</div>
+              <div class="tl-title">AGU Annual Meeting 2024</div>
+              <div class="tl-org">Washington, D.C.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">Nov 2024</div>
+              <div class="tl-title">ASEMFL 2024 Annual Meeting</div>
+              <div class="tl-org">Orlando, FL</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">Jul 2024</div>
+              <div class="tl-title">49th Annual Natural Hazards Workshop</div>
+              <div class="tl-org">Boulder, CO</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">Mar 2023</div>
+              <div class="tl-title">AAG Annual Meeting 2023</div>
+              <div class="tl-org">Denver, CO</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT column -->
+      <div>
+        <!-- Skills -->
+        <div class="cv-block reveal reveal-delay-1">
+          <h3 class="cv-block-title">Technical Skills</h3>
+          <div class="cv-skill-cat">
+            <div class="skill-cat-name">Programming</div>
+            <div class="skill-tags"><span class="skill-tag blue">Python</span><span class="skill-tag blue">R</span><span class="skill-tag blue">JavaScript</span><span class="skill-tag blue">MATLAB</span></div>
+          </div>
+          <div class="cv-skill-cat">
+            <div class="skill-cat-name">Geospatial & Data Science</div>
+            <div class="skill-tags"><span class="skill-tag green">ArcGIS Pro</span><span class="skill-tag green">ArcPy</span><span class="skill-tag green">ArcGIS Online</span><span class="skill-tag green">GeoPandas</span><span class="skill-tag green">OSMnx</span><span class="skill-tag green">Xarray</span></div>
+          </div>
+          <div class="cv-skill-cat">
+            <div class="skill-cat-name">Machine Learning</div>
+            <div class="skill-tags"><span class="skill-tag orange">Scikit-learn</span><span class="skill-tag orange">TensorFlow</span><span class="skill-tag orange">PyTorch</span><span class="skill-tag orange">Keras</span><span class="skill-tag orange">PyCUDA</span><span class="skill-tag orange">Apache Spark</span><span class="skill-tag orange">Dask</span></div>
+          </div>
+          <div class="cv-skill-cat">
+            <div class="skill-cat-name">DevOps & Version Control</div>
+            <div class="skill-tags"><span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">GitLab</span><span class="skill-tag">SourceTree</span><span class="skill-tag">HPC</span></div>
+          </div>
+          <div class="cv-skill-cat">
+            <div class="skill-cat-name">Databases</div>
+            <div class="skill-tags"><span class="skill-tag">MySQL</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">MS SQL Server</span></div>
+          </div>
+          <div class="cv-skill-cat">
+            <div class="skill-cat-name">Statistical & Research</div>
+            <div class="skill-tags"><span class="skill-tag blue">Spatial Statistics</span><span class="skill-tag blue">Time Series Analysis</span><span class="skill-tag blue">Hypothesis Testing</span><span class="skill-tag blue">Frequency Analysis</span></div>
+          </div>
+        </div>
+
+        <!-- Summer Schools -->
+        <div class="cv-block reveal reveal-delay-1">
+          <h3 class="cv-block-title">Summer Schools</h3>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">Aug 2025</div>
+              <div class="tl-title">MACH Summer School 2025</div>
+              <div class="tl-org">Networking, knowledge sharing, and technical field trip with MACH members</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">Aug 2024</div>
+              <div class="tl-title">NSF I-GUIDE Summer School (Funded)</div>
+              <div class="tl-org">Leveraging AI for Environmental Sustainability</div>
+              <ul class="tl-desc">
+                <li>ML model using PyTorch to predict biochar efficacy in removing pharmaceutical waste</li>
+                <li>Collaborated with researchers from NCAR and other universities</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Honors -->
+        <div class="cv-block reveal reveal-delay-1">
+          <h3 class="cv-block-title">Honors & Awards</h3>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">Aug 2025</div>
+              <div class="tl-title">Faculty Cluster Initiative (FCI) Fellowship — $10,000</div>
+              <div class="tl-org">University of Central Florida</div>
+              <div class="tl-desc">Supporting multidisciplinary research focused on solving complex, real-world problems.</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">2024</div>
+              <div class="tl-title">Graduate Presentation Fellowship</div>
+              <div class="tl-org">University of Central Florida</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">Aug 2023</div>
+              <div class="tl-title">Graduate Dean's Fellowship — $5,000</div>
+              <div class="tl-org">University of Central Florida</div>
+              <div class="tl-desc">Awarded to superior graduate students based on academic excellence.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Memberships -->
+        <div class="cv-block reveal reveal-delay-1">
+          <h3 class="cv-block-title">Professional Memberships</h3>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">Aug 2024 – Present</div>
+              <div class="tl-title">American Geophysical Union (AGU)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- References -->
+        <div class="cv-block reveal reveal-delay-1">
+          <h3 class="cv-block-title">References</h3>
+          <div class="cv-ref-grid">
+            <div class="cv-ref-card">
+              <div class="cv-ref-name">Dr. Thomas Wahl</div>
+              <div class="cv-ref-role">Associate Professor, Water Resource Engineering & UCF Coastal</div>
+              <div class="cv-ref-org">University of Central Florida</div>
+              <a href="mailto:t.wahl@ucf.edu" class="cv-ref-email">t.wahl@ucf.edu</a>
+              <div class="cv-ref-rel">PhD Advisor</div>
+            </div>
+            <div class="cv-ref-card">
+              <div class="cv-ref-name">Dr. Jason Senkbeil</div>
+              <div class="cv-ref-role">Professor, Department of Geography</div>
+              <div class="cv-ref-org">University of Alabama</div>
+              <a href="mailto:jcsenkbeil@ua.edu" class="cv-ref-email">jcsenkbeil@ua.edu</a>
+              <div class="cv-ref-rel">Master's Thesis Supervisor</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
