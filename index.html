@@ -219,7 +219,18 @@
       .social-grid,.about-info{grid-template-columns:1fr;}
       .slider-arrow{display:none;}
     }
-  </style>
+  
+    .cred-top{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:2.5rem;}
+    .cred-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.3rem;box-shadow:var(--card-shadow);}
+    .cred-main{grid-column:1/-1;display:flex;align-items:center;gap:1.2rem;border-color:rgba(37,99,168,.35);}
+    .cred-badge{font-family:'DM Mono',monospace;font-weight:500;font-size:1.05rem;color:#fff;background:var(--accent);border-radius:10px;padding:.9rem 1rem;letter-spacing:.06em;}
+    .cred-h{font-family:'Lora',serif;font-size:1.25rem;margin-bottom:1.4rem;}
+    .cred-h span{font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:400;color:var(--muted);margin-left:.6rem;}
+    .cv-block .tl-item{padding-bottom:1rem;}
+    .btn-outline{background:transparent;color:var(--accent);border:2px solid var(--accent);}
+    .btn-outline:hover{background:var(--accent);color:#fff;}
+    .cv-download-btns{display:flex;gap:.8rem;flex-wrap:wrap;}
+</style>
 </head>
 <body>
 
@@ -230,6 +241,7 @@
     <li><a href="#hero">Home</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#resume">Resume</a></li>
+    <li><a href="#credentials">Credentials</a></li>
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="#cv">CV</a></li>
@@ -255,6 +267,7 @@
     </p>
     <div class="hero-btns">
       <a href="#portfolio" class="btn btn-primary">View My Work</a>
+      <a href="Siddiqur_Rahman_Resume.pdf" class="btn btn-outline-white" download>Download Resume</a>
       <a href="#contact" class="btn btn-outline-white">Get in Touch</a>
     </div>
   </div>
@@ -292,7 +305,7 @@
         </div>
         <!-- Contact tickers row -->
         <div class="about-contact-row">
-          <a href="/cdn-cgi/l/email-protection#ce83a1a6afa3a3afaa9da7aaaaa7bfbbbce09cafa6a3afa08ebbada8e0abaabb" class="about-contact-chip" title="Email">
+          <a href="mailto:MohammadSiddiqur.Rahman@ucf.edu" class="about-contact-chip" title="Email">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
             <span>Email</span>
           </a>
@@ -319,35 +332,15 @@
       <div class="about-right reveal reveal-delay-2">
         <div class="about-info">
           <div class="info-item"><span class="info-label">Degree</span><span class="info-val">PhD (in progress)</span></div>
-          <div class="info-item"><span class="info-label">City</span><span class="info-val">Orlando, FL, USA</span></div>
-          <div class="info-item"><span class="info-label">Publications</span><span class="info-val">13 publications</span></div>
+          <div class="info-item"><span class="info-label">Certification</span><span class="info-val">GISP · No. 162982</span></div>
+          <div class="info-item"><span class="info-label">Publications</span><span class="info-val">11 publications</span></div>
           <div class="info-item"><span class="info-label">Availability</span><span class="info-val" style="color:var(--accent2)">Open to work 🟢</span></div>
         </div>
-        <p class="skills-title">Core Competencies</p>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-top"><span class="skill-name">Geospatial Data Science</span><span class="skill-pct">95%</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" data-width="95" style="width:95%"></div></div>
-        </div>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-top"><span class="skill-name">Python & R Programming</span><span class="skill-pct">92%</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" data-width="92" style="width:92%"></div></div>
-        </div>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-top"><span class="skill-name">Machine / Deep Learning</span><span class="skill-pct">88%</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" data-width="88" style="width:88%"></div></div>
-        </div>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-top"><span class="skill-name">Climate & Hazard Modeling</span><span class="skill-pct">90%</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill green" data-width="90" style="width:90%"></div></div>
-        </div>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-top"><span class="skill-name">Big Data Analytics</span><span class="skill-pct">85%</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill green" data-width="85" style="width:85%"></div></div>
-        </div>
-        <div class="skill-bar-wrap">
-          <div class="skill-bar-top"><span class="skill-name">Cloud Computing (AWS/GCP)</span><span class="skill-pct">78%</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" data-width="78" style="width:78%"></div></div>
-        </div>
+        <p class="skills-title">What I Do</p>
+        <div class="skill-cat"><div class="skill-cat-name">Spatial analysis &amp; hazard modeling</div><div class="skill-tags"><span class="skill-tag blue">Power outage &amp; weather-extreme risk</span><span class="skill-tag blue">Raster &amp; land cover analysis</span><span class="skill-tag blue">Spatial statistics</span></div></div>
+        <div class="skill-cat"><div class="skill-cat-name">GIS data management</div><div class="skill-tags"><span class="skill-tag green">Enterprise geodatabases</span><span class="skill-tag green">QA/QC &amp; metadata</span><span class="skill-tag green">Multi-source data integration</span></div></div>
+        <div class="skill-cat"><div class="skill-cat-name">Web GIS &amp; automation</div><div class="skill-tags"><span class="skill-tag">ArcGIS Online &amp; Dashboards</span><span class="skill-tag">Python / ArcPy</span><span class="skill-tag">SQL</span><span class="skill-tag">Google Earth Engine</span></div></div>
+        <div class="skill-cat"><div class="skill-cat-name">Machine learning</div><div class="skill-tags"><span class="skill-tag orange">PyTorch</span><span class="skill-tag orange">TensorFlow</span><span class="skill-tag orange">Scikit-learn</span></div></div>
       </div>
 
     </div>
@@ -436,17 +429,45 @@
       <div>
         <div class="resume-col reveal reveal-delay-2">
           <h3>Technical Skills</h3>
-          <div class="skill-cat"><div class="skill-cat-name">Programming</div><div class="skill-tags"><span class="skill-tag blue">Python</span><span class="skill-tag blue">R</span><span class="skill-tag blue">JavaScript</span><span class="skill-tag blue">MATLAB</span></div></div>
-          <div class="skill-cat"><div class="skill-cat-name">Geospatial</div><div class="skill-tags"><span class="skill-tag green">ArcGIS Pro</span><span class="skill-tag green">ArcPy</span><span class="skill-tag green">ArcGIS Online</span><span class="skill-tag green">ArcGIS Dashboard</span><span class="skill-tag green">ArcGIS Story Maps</span><span class="skill-tag green">ArcGIS Arcade</span><span class="skill-tag green">ArcGIS Parcel Fabric</span><span class="skill-tag green">GeoPandas</span><span class="skill-tag green">OSMnx</span><span class="skill-tag green">Xarray</span><span class="skill-tag green">QGIS</span><span class="skill-tag green">Google Earth Engine</span></div></div>
+          <div class="skill-cat"><div class="skill-cat-name">Programming</div><div class="skill-tags"><span class="skill-tag blue">Python</span><span class="skill-tag blue">R</span><span class="skill-tag blue">JavaScript</span></div></div>
+          <div class="skill-cat"><div class="skill-cat-name">Geospatial</div><div class="skill-tags"><span class="skill-tag green">ArcGIS Pro</span><span class="skill-tag green">ArcPy</span><span class="skill-tag green">ArcGIS Online</span><span class="skill-tag green">ArcGIS Dashboard</span><span class="skill-tag green">ArcGIS Story Maps</span><span class="skill-tag green">ArcGIS Arcade</span><span class="skill-tag green">GeoPandas</span><span class="skill-tag green">OSMnx</span><span class="skill-tag green">Xarray</span><span class="skill-tag green">QGIS</span><span class="skill-tag green">Google Earth Engine</span></div></div>
           <div class="skill-cat"><div class="skill-cat-name">Data Processing</div><div class="skill-tags"><span class="skill-tag blue">FME (ETL)</span><span class="skill-tag blue">Data Quality Control</span><span class="skill-tag blue">Geodatabase Design</span><span class="skill-tag blue">Spatial ETL</span><span class="skill-tag blue">Rasterio</span><span class="skill-tag blue">Coordinate Systems</span><span class="skill-tag blue">Georeferencing</span><span class="skill-tag blue">Data Schema Migration</span><span class="skill-tag blue">Vector/Raster Conversion</span></div></div>
-          <div class="skill-cat"><div class="skill-cat-name">Machine Learning</div><div class="skill-tags"><span class="skill-tag orange">Scikit-learn</span><span class="skill-tag orange">TensorFlow</span><span class="skill-tag orange">PyTorch</span><span class="skill-tag orange">Keras</span><span class="skill-tag orange">PyCUDA</span><span class="skill-tag orange">Apache Spark</span><span class="skill-tag orange">Dask</span></div></div>
-          <div class="skill-cat"><div class="skill-cat-name">DevOps & Version Control</div><div class="skill-tags"><span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">GitLab</span><span class="skill-tag">SourceTree</span><span class="skill-tag">HPC</span></div></div>
+          <div class="skill-cat"><div class="skill-cat-name">Machine Learning</div><div class="skill-tags"><span class="skill-tag orange">Scikit-learn</span><span class="skill-tag orange">TensorFlow</span><span class="skill-tag orange">PyTorch</span><span class="skill-tag orange">Keras</span></div></div>
+          <div class="skill-cat"><div class="skill-cat-name">DevOps & Version Control</div><div class="skill-tags"><span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">HPC</span></div></div>
           <div class="skill-cat"><div class="skill-cat-name">Databases</div><div class="skill-tags"><span class="skill-tag">PostgreSQL</span><span class="skill-tag">MySQL</span><span class="skill-tag">MS SQL Server</span></div></div>
-          <div class="skill-cat"><div class="skill-cat-name">Specialized Areas</div><div class="skill-tags"><span class="skill-tag blue">Hydrologic Modeling</span><span class="skill-tag blue">HEC-RAS</span><span class="skill-tag blue">HEC-HMS</span><span class="skill-tag blue">Big Data Analytics</span><span class="skill-tag blue">Parallel Computing</span></div></div>
+          <div class="skill-cat"><div class="skill-cat-name">Specialized Areas</div><div class="skill-tags"><span class="skill-tag blue">Hydrologic Modeling</span><span class="skill-tag blue">HEC-RAS</span><span class="skill-tag blue">HEC-HMS</span><span class="skill-tag blue">Big Data Analytics</span></div></div>
           <div class="skill-cat"><div class="skill-cat-name">Statistical & Research</div><div class="skill-tags"><span class="skill-tag green">Spatial Statistics</span><span class="skill-tag green">Time Series Analysis</span><span class="skill-tag green">Frequency Analysis</span><span class="skill-tag green">Hypothesis Testing</span></div></div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+
+<div class="divider"></div>
+
+<!-- CREDENTIALS -->
+<section id="credentials">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-tag">Credentials</span>
+      <h2>Certifications &amp; Training</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="cred-top reveal">
+      <div class="cred-card cred-main">
+        <div class="cred-badge">GISP</div>
+        <div>
+          <div class="tl-title">Certified GIS Professional (GISP)</div>
+          <div class="tl-org">GIS Certification Institute (GISCI) · Certification No. 162982</div>
+        </div>
+      </div>
+      <div class="cred-card"><div class="tl-title">FME Fundamentals</div><div class="tl-org">LinkedIn Learning</div></div>
+      <div class="cred-card"><div class="tl-title">Microsoft SQL Server Professional Certificate</div></div>
+      <div class="cred-card"><div class="tl-title">ICS-100</div><div class="tl-org">Introduction to the Incident Command System</div></div>
+    </div>
+    <h3 class="cred-h reveal">Esri Training <span>20 web courses completed, 2024–2026 (score 100 on each)</span></h3>
+    <div class="cv-grid cred-grid"><div class="cv-block reveal"><h3 class="cv-block-title">Data Management &amp; Integrity</h3><div class="timeline"><div class="tl-item"><div class="tl-date">Aug 2025</div><div class="tl-title">Getting Started with the Geodatabase</div></div><div class="tl-item"><div class="tl-date">Nov 2026</div><div class="tl-title">Integrating Data in ArcGIS Pro</div></div><div class="tl-item"><div class="tl-date">Nov 2026</div><div class="tl-title">Maintaining Spatial Data Integrity Using ArcGIS Pro</div></div><div class="tl-item"><div class="tl-date">Nov 2026</div><div class="tl-title">Maintaining Attribute Data Integrity Using ArcGIS Pro</div></div></div></div><div class="cv-block reveal"><h3 class="cv-block-title">Analysis &amp; Geoprocessing</h3><div class="timeline"><div class="tl-item"><div class="tl-date">Nov 2026</div><div class="tl-title">Building Geoprocessing Models Using ArcGIS Pro</div></div><div class="tl-item"><div class="tl-date">Nov 2026</div><div class="tl-title">Processing Raster Data Using ArcGIS Pro</div></div><div class="tl-item"><div class="tl-date">Nov 2026</div><div class="tl-title">Suitability Modeling: Introduction</div></div><div class="tl-item"><div class="tl-date">Aug 2025</div><div class="tl-title">Introduction to 3D Data</div></div><div class="tl-item"><div class="tl-date">Sep 2026</div><div class="tl-title">ArcGIS Utility Network Basics</div></div></div></div><div class="cv-block reveal"><h3 class="cv-block-title">ArcGIS Online &amp; Web GIS</h3><div class="timeline"><div class="tl-item"><div class="tl-date">Jun 2025</div><div class="tl-title">ArcGIS Online Basics</div></div><div class="tl-item"><div class="tl-date">Feb 2026</div><div class="tl-title">ArcGIS Online: Creating and Styling a Map</div></div><div class="tl-item"><div class="tl-date">Feb 2026</div><div class="tl-title">ArcGIS Online: Performing Analysis</div></div><div class="tl-item"><div class="tl-date">Feb 2026</div><div class="tl-title">ArcGIS Online: Working with Imagery</div></div><div class="tl-item"><div class="tl-date">Feb 2026</div><div class="tl-title">ArcGIS Experience Builder Basics</div></div><div class="tl-item"><div class="tl-date">Feb 2026</div><div class="tl-title">Writing ArcGIS Arcade Expressions</div></div></div></div><div class="cv-block reveal"><h3 class="cv-block-title">Python &amp; Automation</h3><div class="timeline"><div class="tl-item"><div class="tl-date">Oct 2025</div><div class="tl-title">Introduction to ArcGIS API for Python</div></div><div class="tl-item"><div class="tl-date">Oct 2025</div><div class="tl-title">Accessing Data in a Portal Using ArcGIS API for Python</div></div></div></div><div class="cv-block reveal"><h3 class="cv-block-title">Foundations</h3><div class="timeline"><div class="tl-item"><div class="tl-date">Jan 2024</div><div class="tl-title">GIS Basics</div></div><div class="tl-item"><div class="tl-date">Feb 2024</div><div class="tl-title">ArcGIS Pro Basics</div></div><div class="tl-item"><div class="tl-date">Feb 2024</div><div class="tl-title">Basics of Geographic Coordinate Systems</div></div></div></div><div class="cv-block reveal"><h3 class="cv-block-title">Training Seminars &amp; Videos</h3><div class="timeline"><div class="tl-item"><div class="tl-date">Sep 2026</div><div class="tl-title">Get Started with Field Maps Designer (training seminar)</div></div><div class="tl-item"><div class="tl-date">Aug 2026</div><div class="tl-title">ArcGIS Pro Parcel Fabric: Working with Records (video)</div></div><div class="tl-item"><div class="tl-date">Jan 2026</div><div class="tl-title">Introducing ArcGIS StoryMaps (training seminar)</div></div><div class="tl-item"><div class="tl-date">Aug 2025</div><div class="tl-title">ArcGIS Arcade Essentials (training seminar)</div></div><div class="tl-item"><div class="tl-date">Jun 2025</div><div class="tl-title">Analysis in ArcGIS Online (training seminar)</div></div></div></div></div>
   </div>
 </section>
 
@@ -654,6 +675,65 @@
         </div>
       </div>
 
+
+      <div class="project-card" data-cat="gis">
+        <div class="project-thumb" style="background:linear-gradient(135deg,#2563a8,#1e8a6e);color:#fff;font-family:'DM Mono',monospace;font-size:.85rem;letter-spacing:.08em;text-align:center;padding:1rem;">MODELBUILDER · SITE SUITABILITY</div>
+        <div class="project-body">
+          <div class="project-cat">GIS &amp; Remote Sensing</div>
+          <h3>Site Suitability Model — Fort Collins, CO</h3>
+          <p>ArcGIS Pro ModelBuilder site-suitability model that finds vacant parcels near the city and river while avoiding flood plains, homes, and parks.</p>
+          <div class="project-links"><a href="https://github.com/siddik95/arcgis-site-selection" target="_blank" class="proj-link primary">GitHub</a></div>
+        </div>
+      </div>
+
+      <div class="project-card" data-cat="gis">
+        <div class="project-thumb" style="background:linear-gradient(135deg,#1e8a6e,#4a90d9);color:#fff;font-family:'DM Mono',monospace;font-size:.85rem;letter-spacing:.08em;text-align:center;padding:1rem;">ARCGIS API FOR PYTHON · FOLIUM</div>
+        <div class="project-body">
+          <div class="project-cat">GIS &amp; Remote Sensing</div>
+          <h3>Geocoding with ArcGIS API for Python</h3>
+          <p>How to geocode locations with the ArcGIS API for Python and build interactive visualizations with Folium.</p>
+          <div class="project-links"><a href="https://github.com/siddik95/GeocodingWithArcGISAPI" target="_blank" class="proj-link primary">GitHub</a></div>
+        </div>
+      </div>
+
+      <div class="project-card" data-cat="gis">
+        <div class="project-thumb" style="background:linear-gradient(135deg,#c2410c,#2563a8);color:#fff;font-family:'DM Mono',monospace;font-size:.85rem;letter-spacing:.08em;text-align:center;padding:1rem;">POWER OUTAGES · FLORIDA</div>
+        <div class="project-body">
+          <div class="project-cat">GIS &amp; Remote Sensing</div>
+          <h3>Power Outage Characteristics — Florida</h3>
+          <p>Jupyter notebooks and data supporting my analysis of power outage characteristics from compound weather extremes in Florida.</p>
+          <div class="project-links"><a href="https://github.com/siddik95/PowerOutageFL" target="_blank" class="proj-link primary">GitHub</a></div>
+        </div>
+      </div>
+
+
+
+      <!-- 10. Orlando Metro Population & Housing Trends -->
+      <div class="project-card" data-cat="gis">
+        <div class="project-thumb" style="background:linear-gradient(135deg,#2563a8,#1e8a6e);color:#fff;font-family:'DM Mono',monospace;font-size:.9rem;letter-spacing:.08em;text-align:center;padding:1rem;">ACS 2016–2024 · 490 TRACTS</div>
+        <div class="project-body">
+          <div class="project-cat">GIS &amp; Web Mapping</div>
+          <h3>Orlando Metro Population &amp; Housing Trends</h3>
+          <p>Python pipeline pulling ACS 5-year estimates and boundaries for 490 tracts across four counties (2016–2024). Estimates are classified by margin of error and coefficient of variation, change is tested at 90% confidence, and a labeled 2030 projection is included. Published as hosted layers, Arcade-styled web maps, and a StoryMap.</p>
+          <div class="project-links">
+            <a href="https://arcg.is/1TmizP5" target="_blank" class="proj-link primary">↗ StoryMap</a>
+            <a href="https://github.com/siddik95/OrlandoPopulation" target="_blank" class="proj-link">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. More on GitHub -->
+      <div class="project-card" data-cat="software">
+        <div class="project-thumb" style="background:#24292f;color:#fff;font-family:'DM Mono',monospace;font-size:1rem;letter-spacing:.08em;">github.com/siddik95</div>
+        <div class="project-body">
+          <div class="project-cat">Software</div>
+          <h3>All Repositories</h3>
+          <p>Code for every project on this page, plus smaller scripts and experiments.</p>
+          <div class="project-links">
+            <a href="https://github.com/siddik95?tab=repositories" target="_blank" class="proj-link primary">GitHub</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -703,10 +783,11 @@
           <div class="cv-download-sub">PhD Candidate · Water Resources Engineering · University of Central Florida</div>
         </div>
       </div>
-      <a href="CV_Rahman_MS.pdf" download="CV_Rahman_MS.pdf" class="btn btn-primary">
+      <div class="cv-download-btns"><a href="CV_Rahman_MS.pdf" download="CV_Rahman_MS.pdf" class="btn btn-primary">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:.5rem;vertical-align:middle"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download CV
       </a>
+      <a href="Siddiqur_Rahman_Resume.pdf" download="Siddiqur_Rahman_Resume.pdf" class="btn btn-outline">Download Resume (1 page)</a></div>
     </div>
 
     <div class="cv-grid">
@@ -811,15 +892,15 @@
       <div>
         <div class="cv-block reveal reveal-delay-1">
           <h3 class="cv-block-title">Technical Skills</h3>
-          <div class="cv-skill-cat"><div class="skill-cat-name">Programming</div><div class="skill-tags"><span class="skill-tag blue">Python</span><span class="skill-tag blue">R</span><span class="skill-tag blue">JavaScript</span><span class="skill-tag blue">MATLAB</span></div></div>
-          <div class="cv-skill-cat"><div class="skill-cat-name">Geospatial & GIS</div><div class="skill-tags"><span class="skill-tag green">ArcGIS Pro</span><span class="skill-tag green">ArcPy</span><span class="skill-tag green">ArcGIS Online</span><span class="skill-tag green">ArcGIS Dashboard</span><span class="skill-tag green">ArcGIS Story Maps</span><span class="skill-tag green">ArcGIS Arcade</span><span class="skill-tag green">ArcGIS Parcel Fabric</span><span class="skill-tag green">GeoPandas</span><span class="skill-tag green">OSMnx</span><span class="skill-tag green">Xarray</span><span class="skill-tag green">Rasterio</span><span class="skill-tag green">QGIS</span><span class="skill-tag green">Google Earth Engine</span></div></div>
+          <div class="cv-skill-cat"><div class="skill-cat-name">Programming</div><div class="skill-tags"><span class="skill-tag blue">Python</span><span class="skill-tag blue">R</span><span class="skill-tag blue">JavaScript</span></div></div>
+          <div class="cv-skill-cat"><div class="skill-cat-name">Geospatial & GIS</div><div class="skill-tags"><span class="skill-tag green">ArcGIS Pro</span><span class="skill-tag green">ArcPy</span><span class="skill-tag green">ArcGIS Online</span><span class="skill-tag green">ArcGIS Dashboard</span><span class="skill-tag green">ArcGIS Story Maps</span><span class="skill-tag green">ArcGIS Arcade</span><span class="skill-tag green">GeoPandas</span><span class="skill-tag green">OSMnx</span><span class="skill-tag green">Xarray</span><span class="skill-tag green">Rasterio</span><span class="skill-tag green">QGIS</span><span class="skill-tag green">Google Earth Engine</span></div></div>
           <div class="cv-skill-cat"><div class="skill-cat-name">Data Processing</div><div class="skill-tags"><span class="skill-tag blue">FME (ETL)</span><span class="skill-tag blue">Spatial ETL Pipelines</span><span class="skill-tag blue">Data Quality Control</span><span class="skill-tag blue">Geodatabase Design</span><span class="skill-tag blue">Coordinate Systems & Projections</span><span class="skill-tag blue">Georeferencing</span><span class="skill-tag blue">Data Schema Migration</span><span class="skill-tag blue">Vector/Raster Conversion</span><span class="skill-tag blue">Multi-Source Data Integration</span><span class="skill-tag blue">Large-Scale Raster Processing</span></div></div>
-          <div class="cv-skill-cat"><div class="skill-cat-name">Machine Learning</div><div class="skill-tags"><span class="skill-tag orange">Scikit-learn</span><span class="skill-tag orange">TensorFlow</span><span class="skill-tag orange">PyTorch</span><span class="skill-tag orange">Keras</span><span class="skill-tag orange">PyCUDA</span><span class="skill-tag orange">Apache Spark</span><span class="skill-tag orange">Dask</span></div></div>
-          <div class="cv-skill-cat"><div class="skill-cat-name">DevOps & Version Control</div><div class="skill-tags"><span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">GitLab</span><span class="skill-tag">SourceTree</span><span class="skill-tag">HPC</span></div></div>
+          <div class="cv-skill-cat"><div class="skill-cat-name">Machine Learning</div><div class="skill-tags"><span class="skill-tag orange">Scikit-learn</span><span class="skill-tag orange">TensorFlow</span><span class="skill-tag orange">PyTorch</span><span class="skill-tag orange">Keras</span></div></div>
+          <div class="cv-skill-cat"><div class="skill-cat-name">DevOps & Version Control</div><div class="skill-tags"><span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">HPC</span></div></div>
           <div class="cv-skill-cat"><div class="skill-cat-name">Databases</div><div class="skill-tags"><span class="skill-tag">MySQL</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">MS SQL Server</span></div></div>
-          <div class="cv-skill-cat"><div class="skill-cat-name">Specialized Areas</div><div class="skill-tags"><span class="skill-tag blue">HEC-RAS</span><span class="skill-tag blue">HEC-HMS</span><span class="skill-tag blue">Hydrologic Modeling</span><span class="skill-tag blue">Big Data Analytics</span><span class="skill-tag blue">Parallel Computing</span></div></div>
+          <div class="cv-skill-cat"><div class="skill-cat-name">Specialized Areas</div><div class="skill-tags"><span class="skill-tag blue">HEC-RAS</span><span class="skill-tag blue">HEC-HMS</span><span class="skill-tag blue">Hydrologic Modeling</span><span class="skill-tag blue">Big Data Analytics</span></div></div>
           <div class="cv-skill-cat"><div class="skill-cat-name">Statistical & Research</div><div class="skill-tags"><span class="skill-tag green">Spatial Statistics</span><span class="skill-tag green">Time Series Analysis</span><span class="skill-tag green">Frequency Analysis</span><span class="skill-tag green">Hypothesis Testing</span></div></div>
-          <div class="cv-skill-cat"><div class="skill-cat-name">Online Courses</div><div class="skill-tags"><span class="skill-tag">ESRI ArcGIS Pro</span><span class="skill-tag">ArcGIS Online</span><span class="skill-tag">ArcGIS WebApp</span><span class="skill-tag">Geodatabase</span><span class="skill-tag">Geospatial Analysis in Python</span><span class="skill-tag">FME</span></div></div>
+          <div class="cv-skill-cat"><div class="skill-cat-name">Esri Training</div><div class="skill-tags"><span class="skill-tag">20 web courses (2024–2026)</span><span class="skill-tag"><a href="#credentials">See Credentials</a></span></div></div>
         </div>
 
         <div class="cv-block reveal reveal-delay-1">
@@ -893,8 +974,7 @@
         <p>I'm open to research collaborations, conference presentations, and consulting related to environmental hazards and infrastructure resilience.</p>
         <div class="contact-detail-list">
           <div class="contact-detail"><div class="contact-icon">📍</div><div><div class="contact-info-label">Location</div><div class="contact-info-val">Orlando, FL, USA</div></div></div>
-          <div class="contact-detail"><div class="contact-icon">✉</div><div><div class="contact-info-label">UCF Email</div><div class="contact-info-val"><a href="/cdn-cgi/l/email-protection#e0ad8f88818d8d8184b389848489919592ceb281888d818ea0958386ce858495"><span class="__cf_email__" data-cfemail="b0fddfd8d1ddddd1d4e3d9d4d4d9c1c5c29ee2d1d8ddd1def0c5d3d69ed5d4c5">[email&#160;protected]</span></a></div></div></div>
-          <div class="contact-detail"><div class="contact-icon">✉</div><div><div class="contact-info-label">UA Email</div><div class="contact-info-val"><a href="/cdn-cgi/l/email-protection#baf7c8dbd2d7dbd48983fad9c8d3d7c9d5d494cfdb94dfdecf"><span class="__cf_email__" data-cfemail="b1fcc3d0d9dcd0df8288f1d2c3d8dcc2dedf9fc4d09fd4d5c4">[email&#160;protected]</span></a></div></div></div>
+          <div class="contact-detail"><div class="contact-icon">✉</div><div><div class="contact-info-label">UCF Email</div><div class="contact-info-val"><a href="mailto:MohammadSiddiqur.Rahman@ucf.edu">MohammadSiddiqur.Rahman@ucf.edu</a></div></div></div>
         </div>
       </div>
       <div class="reveal reveal-delay-2">
@@ -903,16 +983,15 @@
           <a href="https://github.com/siddik95/" target="_blank" class="social-card"><span class="social-card-icon">⌥</span><div><div class="social-card-label">GitHub</div><div class="social-card-handle">@siddik95</div></div></a>
           <a href="https://www.linkedin.com/in/msrahman21" target="_blank" class="social-card"><span class="social-card-icon">◈</span><div><div class="social-card-label">LinkedIn</div><div class="social-card-handle">msrahman21</div></div></a>
           <a href="https://x.com/SiddRahman01" target="_blank" class="social-card"><span class="social-card-icon">𝕏</span><div><div class="social-card-label">X / Twitter</div><div class="social-card-handle">@SiddRahman01</div></div></a>
-          <a href="/cdn-cgi/l/email-protection#88c5e7e0e9e5e5e9ecdbe1ecece1f9fdfaa6dae9e0e5e9e6c8fdebeea6edecfd" class="social-card"><span class="social-card-icon">✉</span><div><div class="social-card-label">Email</div><div class="social-card-handle">Send a message</div></div></a>
+          <a href="mailto:MohammadSiddiqur.Rahman@ucf.edu" class="social-card"><span class="social-card-icon">✉</span><div><div class="social-card-label">Email</div><div class="social-card-handle">Send a message</div></div></a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<footer>© 2025 <span>Siddiqur Rahman</span> · PhD Candidate, University of Central Florida</footer>
+<footer>© 2026 <span>Siddiqur Rahman</span> · PhD Candidate, University of Central Florida</footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 <script>
 (function(){
   // Hamburger
@@ -931,7 +1010,7 @@
   });
 
   // Typed text
-  var roles=['Geospatial Data Scientist','Climate Researcher','Power Outage Modeler','PhD Candidate @ UCF'];
+  var roles=['Geospatial Data Scientist','GISP-Certified GIS Professional','Power Outage & Climate Risk Modeler','PhD Candidate @ UCF'];
   var ri=0,ci=0,deleting=false;
   var typed=document.getElementById('typedRole');
   function type(){
