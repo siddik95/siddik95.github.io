@@ -230,6 +230,18 @@
     .btn-outline{background:transparent;color:var(--accent);border:2px solid var(--accent);}
     .btn-outline:hover{background:var(--accent);color:#fff;}
     .cv-download-btns{display:flex;gap:.8rem;flex-wrap:wrap;}
+
+    .rm-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.6);display:none;align-items:center;justify-content:center;z-index:2000;padding:1.5rem;}
+    .rm-backdrop.open{display:flex;}
+    .rm-dialog{background:var(--white);border-radius:14px;width:min(900px,100%);height:min(92vh,1100px);display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.35);overflow:hidden;}
+    .rm-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem 1.1rem;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+    .rm-title{font-family:'Lora',serif;font-weight:600;font-size:1.05rem;}
+    .rm-actions{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;}
+    .rm-actions .btn{padding:.45rem 1rem;font-size:.85rem;margin:0;}
+    .rm-close{background:none;border:1px solid var(--border);border-radius:8px;width:36px;height:36px;font-size:1.3rem;line-height:1;cursor:pointer;color:var(--text);}
+    .rm-close:hover{background:var(--bg2);}
+    .rm-frame{flex:1;width:100%;border:0;background:#fff;}
+    @media(max-width:640px){.rm-backdrop{padding:0}.rm-dialog{height:100%;border-radius:0}}
 </style>
 </head>
 <body>
@@ -267,7 +279,7 @@
     </p>
     <div class="hero-btns">
       <a href="#portfolio" class="btn btn-primary">View My Work</a>
-      <a href="Siddiqur_Rahman_Resume.pdf" class="btn btn-outline-white" download>Download Resume</a>
+      <a href="resume.html" class="btn btn-outline-white" data-resume-modal>View Resume</a>
       <a href="#contact" class="btn btn-outline-white">Get in Touch</a>
     </div>
   </div>
@@ -374,7 +386,7 @@
             <div class="tl-item">
               <div class="tl-date">Aug 2021 – Aug 2023</div>
               <div class="tl-title">Master's in Geography (GIS Focused)</div>
-              <div class="tl-org">University of Alabama, Tuscaloosa, AL · GPA 3.88</div>
+              <div class="tl-org">University of Alabama, Tuscaloosa, AL · GPA 3.77</div>
               <ul class="tl-desc">
                 <li>Web GIS, Remote Sensing Analytics, Environmental Data Analysis</li>
                 <li>GIS for Civil Engineers, Research Methodology in GIS</li>
@@ -463,7 +475,7 @@
         </div>
       </div>
       <div class="cred-card"><div class="tl-title">FME Fundamentals</div><div class="tl-org">LinkedIn Learning</div></div>
-      <div class="cred-card"><div class="tl-title">Microsoft SQL Server Professional Certificate</div></div>
+      <div class="cred-card"><div class="tl-title">Microsoft SQL Server Professional Certificate</div><div class="tl-org">Microsoft via Coursera · 5 courses · Jul 2026 · <a href="https://coursera.org/verify/professional-cert/EZ8OCJC2ZE84" target="_blank">Verify</a></div></div>
       <div class="cred-card"><div class="tl-title">ICS-100</div><div class="tl-org">Introduction to the Incident Command System</div></div>
     </div>
     <h3 class="cred-h reveal">Esri Training <span>20 web courses completed, 2024–2026 (score 100 on each)</span></h3>
@@ -487,12 +499,15 @@
       <button class="filter-btn" data-filter="ml">Machine Learning</button>
       <button class="filter-btn" data-filter="software">Software</button>
       <button class="filter-btn" data-filter="dashboard">Dashboards</button>
-      <button class="filter-btn" data-filter="arcpy">ArcPy</button>
+      <button class="filter-btn" data-filter="arcpy">ArcGIS & ArcPy</button>
+      <button class="filter-btn" data-filter="automation">Automation</button>
+      <button class="filter-btn" data-filter="webmap">Web Mapping</button>
+      <button class="filter-btn" data-filter="data">Data Analysis</button>
     </div>
     <div class="portfolio-grid">
 
       <!-- 1. Land Cover Classification — NLCD_thumbnail.png -->
-      <div class="project-card" data-cat="gis">
+      <div class="project-card" data-cat="gis automation webmap">
         <div class="project-thumb">
           <img src="NLCD_thumbnail.png" alt="NLCD Land Cover Analyzer"/>
           <div class="thumb-overlay">
@@ -514,7 +529,7 @@
       </div>
 
       <!-- 2. Raster Data Analysis — lancover_thumbnail.jpg -->
-      <div class="project-card" data-cat="gis">
+      <div class="project-card" data-cat="gis data">
         <div class="project-thumb">
           <img src="lancover_thumbnail.jpg" alt="Raster Data Analysis — false-color satellite"/>
           <div class="thumb-overlay">
@@ -556,7 +571,7 @@
       </div>
 
       <!-- 4. Sentiment Analysis — generated SVG thumbnail -->
-      <div class="project-card" data-cat="ml">
+      <div class="project-card" data-cat="ml data">
         <div class="project-thumb">
           <img src="sentiment_thumbnail.svg" alt="Sentiment Analysis with GPT API"/>
           <div class="thumb-overlay">
@@ -576,7 +591,7 @@
       </div>
 
       <!-- 5. Pharmaceutical Removal — pharma_thumbnail.png -->
-      <div class="project-card" data-cat="ml">
+      <div class="project-card" data-cat="ml data">
         <div class="project-thumb">
           <img src="pharma_thumbnail.png" alt="Pharmaceutical Removal Prediction"/>
           <div class="thumb-overlay">
@@ -596,7 +611,7 @@
       </div>
 
       <!-- 6. US Power Plants Dashboard -->
-      <div class="project-card" data-cat="dashboard">
+      <div class="project-card" data-cat="dashboard webmap">
         <div class="project-thumb">
           <img src="uspowerplants_thumbnail.png" alt="US Power Plants Dashboard"/>
           <div class="thumb-overlay">
@@ -616,7 +631,7 @@
       </div>
 
       <!-- 7. LA County Healthcare Facilities Dashboard -->
-      <div class="project-card" data-cat="dashboard">
+      <div class="project-card" data-cat="dashboard webmap">
         <div class="project-thumb">
           <img src="lahealthcare_thumbnail.png" alt="LA County Health Care Facilities Dashboard"/>
           <div class="thumb-overlay">
@@ -636,7 +651,7 @@
       </div>
 
       <!-- 8. ArcPy Drainage Calculation -->
-      <div class="project-card" data-cat="arcpy">
+      <div class="project-card" data-cat="arcpy automation gis">
         <div class="project-thumb">
           <img src="drainage_basin.jpg" alt="ArcPy Drainage Basin Calculation"/>
           <div class="thumb-overlay">
@@ -656,7 +671,7 @@
       </div>
 
       <!-- 9. River Network Bangladesh -->
-      <div class="project-card" data-cat="gis">
+      <div class="project-card" data-cat="gis data">
         <div class="project-thumb">
           <img src="BD_RIVERS.png" alt="River Network of Bangladesh"/>
           <div class="thumb-overlay">
@@ -676,18 +691,30 @@
       </div>
 
 
-      <div class="project-card" data-cat="gis">
-        <div class="project-thumb" style="background:linear-gradient(135deg,#2563a8,#1e8a6e);color:#fff;font-family:'DM Mono',monospace;font-size:.85rem;letter-spacing:.08em;text-align:center;padding:1rem;">MODELBUILDER · SITE SUITABILITY</div>
+      <div class="project-card" data-cat="gis arcpy automation">
+        <div class="project-thumb">
+          <img src="SiteSelection_thumbnail.png" alt="ArcGIS Pro ModelBuilder site suitability model for Fort Collins, CO"/>
+          <div class="thumb-overlay">
+            <div class="thumb-overlay-links">
+              <a href="SiteSelection_model.svg" target="_blank" class="thumb-overlay-link">↗ Full model</a>
+              <a href="https://github.com/siddik95/arcgis-site-selection" target="_blank" class="thumb-overlay-link">GitHub</a>
+            </div>
+          </div>
+        </div>
         <div class="project-body">
           <div class="project-cat">GIS &amp; Remote Sensing</div>
           <h3>Site Suitability Model — Fort Collins, CO</h3>
           <p>ArcGIS Pro ModelBuilder site-suitability model that finds vacant parcels near the city and river while avoiding flood plains, homes, and parks.</p>
-          <div class="project-links"><a href="https://github.com/siddik95/arcgis-site-selection" target="_blank" class="proj-link primary">GitHub</a></div>
+          <div class="project-links"><a href="SiteSelection_model.svg" target="_blank" class="proj-link primary">↗ Full model</a>
+            <a href="https://github.com/siddik95/arcgis-site-selection" target="_blank" class="proj-link">GitHub</a></div>
         </div>
       </div>
 
-      <div class="project-card" data-cat="gis">
-        <div class="project-thumb" style="background:linear-gradient(135deg,#1e8a6e,#4a90d9);color:#fff;font-family:'DM Mono',monospace;font-size:.85rem;letter-spacing:.08em;text-align:center;padding:1rem;">ARCGIS API FOR PYTHON · FOLIUM</div>
+      <div class="project-card" data-cat="gis arcpy automation">
+        <div class="project-thumb">
+          <img src="Geocoding_thumbnail.png" alt="Geocoding with the ArcGIS API for Python"/>
+          <div class="thumb-overlay"><div class="thumb-overlay-links"><a href="https://github.com/siddik95/GeocodingWithArcGISAPI" target="_blank" class="thumb-overlay-link">GitHub</a></div></div>
+        </div>
         <div class="project-body">
           <div class="project-cat">GIS &amp; Remote Sensing</div>
           <h3>Geocoding with ArcGIS API for Python</h3>
@@ -696,8 +723,11 @@
         </div>
       </div>
 
-      <div class="project-card" data-cat="gis">
-        <div class="project-thumb" style="background:linear-gradient(135deg,#c2410c,#2563a8);color:#fff;font-family:'DM Mono',monospace;font-size:.85rem;letter-spacing:.08em;text-align:center;padding:1rem;">POWER OUTAGES · FLORIDA</div>
+      <div class="project-card" data-cat="gis data">
+        <div class="project-thumb">
+          <img src="PowerOutageFL_thumbnail.png" alt="Power outage characteristics in Florida"/>
+          <div class="thumb-overlay"><div class="thumb-overlay-links"><a href="https://github.com/siddik95/PowerOutageFL" target="_blank" class="thumb-overlay-link">GitHub</a></div></div>
+        </div>
         <div class="project-body">
           <div class="project-cat">GIS &amp; Remote Sensing</div>
           <h3>Power Outage Characteristics — Florida</h3>
@@ -709,12 +739,20 @@
 
 
       <!-- 10. Orlando Metro Population & Housing Trends -->
-      <div class="project-card" data-cat="gis">
-        <div class="project-thumb" style="background:linear-gradient(135deg,#2563a8,#1e8a6e);color:#fff;font-family:'DM Mono',monospace;font-size:.9rem;letter-spacing:.08em;text-align:center;padding:1rem;">ACS 2016–2024 · 490 TRACTS</div>
+      <div class="project-card" data-cat="gis webmap data automation">
+        <div class="project-thumb">
+          <img src="OrlandoACS_thumbnail.png" alt="Growing Out, Growing Older — Orlando metro population and housing change StoryMap"/>
+          <div class="thumb-overlay">
+            <div class="thumb-overlay-links">
+              <a href="https://arcg.is/1TmizP5" target="_blank" class="thumb-overlay-link">↗ StoryMap</a>
+              <a href="https://github.com/siddik95/OrlandoPopulation" target="_blank" class="thumb-overlay-link">GitHub</a>
+            </div>
+          </div>
+        </div>
         <div class="project-body">
           <div class="project-cat">GIS &amp; Web Mapping</div>
-          <h3>Orlando Metro Population &amp; Housing Trends</h3>
-          <p>Python pipeline pulling ACS 5-year estimates and boundaries for 490 tracts across four counties (2016–2024). Estimates are classified by margin of error and coefficient of variation, change is tested at 90% confidence, and a labeled 2030 projection is included. Published as hosted layers, Arcade-styled web maps, and a StoryMap.</p>
+          <h3>Growing Out, Growing Older: Orlando Metro Trends</h3>
+          <p>Python pipeline and ArcGIS StoryMap on population and housing change across 490 census tracts in Lake, Orange, Osceola and Seminole counties (ACS 2016–2020 to 2020–2024). Estimates are rated by coefficient of variation, change is tested against the margin of error, and the 2030 projection is labeled as an illustration. Found 79 tracts with significant growth and about 233,000 new residents.</p>
           <div class="project-links">
             <a href="https://arcg.is/1TmizP5" target="_blank" class="proj-link primary">↗ StoryMap</a>
             <a href="https://github.com/siddik95/OrlandoPopulation" target="_blank" class="proj-link">GitHub</a>
@@ -724,7 +762,10 @@
 
       <!-- 11. More on GitHub -->
       <div class="project-card" data-cat="software">
-        <div class="project-thumb" style="background:#24292f;color:#fff;font-family:'DM Mono',monospace;font-size:1rem;letter-spacing:.08em;">github.com/siddik95</div>
+        <div class="project-thumb">
+          <img src="GitHubRepos_thumbnail.png" alt="All GitHub repositories"/>
+          <div class="thumb-overlay"><div class="thumb-overlay-links"><a href="https://github.com/siddik95?tab=repositories" target="_blank" class="thumb-overlay-link">GitHub</a></div></div>
+        </div>
         <div class="project-body">
           <div class="project-cat">Software</div>
           <h3>All Repositories</h3>
@@ -787,7 +828,8 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:.5rem;vertical-align:middle"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download CV
       </a>
-      <a href="Siddiqur_Rahman_Resume.pdf" download="Siddiqur_Rahman_Resume.pdf" class="btn btn-outline">Download Resume (1 page)</a></div>
+      <a href="resume.html" class="btn btn-outline" data-resume-modal>View Resume</a>
+      <a href="Siddiqur_Rahman_Resume.pdf" download="Siddiqur_Rahman_Resume.pdf" class="btn btn-outline">Resume PDF</a></div>
     </div>
 
     <div class="cv-grid">
@@ -990,6 +1032,22 @@
   </div>
 </section>
 
+
+<!-- RESUME MODAL -->
+<div class="rm-backdrop" id="resumeModal" role="dialog" aria-modal="true" aria-labelledby="rmTitle" hidden>
+  <div class="rm-dialog">
+    <div class="rm-head">
+      <span class="rm-title" id="rmTitle">Resume — Siddiqur Rahman, GISP</span>
+      <div class="rm-actions">
+        <a href="Siddiqur_Rahman_Resume.pdf" download="Siddiqur_Rahman_Resume.pdf" class="btn btn-primary">Download PDF</a>
+        <a href="resume.html" target="_blank" rel="noopener" class="btn btn-outline">Open full page</a>
+        <button class="rm-close" id="rmClose" aria-label="Close resume">&times;</button>
+      </div>
+    </div>
+    <iframe class="rm-frame" id="rmFrame" title="Resume" data-src="resume.html"></iframe>
+  </div>
+</div>
+
 <footer>© 2026 <span>Siddiqur Rahman</span> · PhD Candidate, University of Central Florida</footer>
 
 <script>
@@ -1077,7 +1135,7 @@
       var f=btn.getAttribute('data-filter');
       allCards.forEach(function(c){
         var cat = c.getAttribute('data-cat');
-        if(f==='all'||cat===f){
+        if(f==='all'||(' '+cat+' ').indexOf(' '+f+' ')>-1){
           c.style.display='';
           c.style.visibility='visible';
           c.style.opacity='1';
@@ -1087,6 +1145,24 @@
       });
     });
   });
+
+  // Resume modal
+  var rmModal=document.getElementById('resumeModal'),rmFrame=document.getElementById('rmFrame'),rmLast=null;
+  function rmOpen(e){
+    if(e)e.preventDefault();
+    rmLast=document.activeElement;
+    if(!rmFrame.getAttribute('src'))rmFrame.setAttribute('src',rmFrame.getAttribute('data-src'));
+    rmModal.hidden=false;rmModal.classList.add('open');document.body.style.overflow='hidden';
+    document.getElementById('rmClose').focus();
+  }
+  function rmClose(){
+    rmModal.classList.remove('open');rmModal.hidden=true;document.body.style.overflow='';
+    if(rmLast&&rmLast.focus)rmLast.focus();
+  }
+  document.querySelectorAll('[data-resume-modal]').forEach(function(a){a.addEventListener('click',rmOpen);});
+  document.getElementById('rmClose').addEventListener('click',rmClose);
+  rmModal.addEventListener('click',function(e){if(e.target===rmModal)rmClose();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&rmModal.classList.contains('open'))rmClose();});
 })();
 </script>
 </body>
